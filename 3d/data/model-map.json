@@ -1,0 +1,1404 @@
+{
+ "generatedFrom": "data/parts.json",
+ "turbine": {
+  "manufacturer": "金风科技",
+  "model": "GW171/6450",
+  "platform": "GW V60",
+  "project": "三峡大丰",
+  "ratedPower_kW": 6450,
+  "rotorDiameter_m": 171,
+  "hubHeight_m": [
+   103,
+   106,
+   109,
+   115
+  ],
+  "rotorSpeed_rpm": [
+   7,
+   10.7
+  ],
+  "ratedWindSpeed_mps": 10.8,
+  "extremeWindSpeed_3s_mps": 59.5,
+  "designLife_years": 25,
+  "powerRegulation": "变桨变速调节",
+  "driveType": "永磁直驱、外转子、单轴承、无齿轮箱",
+  "generatorCooling": "闭式循环空空冷却 IC977",
+  "ipClass_generator": "IP54"
+ },
+ "views": [
+  {
+   "id": "overview",
+   "name": "整机远景",
+   "distance": 260,
+   "target": [
+    0,
+    66,
+    0
+   ],
+   "hotspots": [
+    {
+     "id": "H01",
+     "label": "叶片",
+     "partId": "A1",
+     "partName": "叶片",
+     "parentName": "叶轮总成",
+     "meshes": [
+      "blade_1",
+      "blade_2",
+      "blade_3"
+     ]
+    },
+    {
+     "id": "H02",
+     "label": "轮毂与导流罩",
+     "partId": "A4",
+     "partName": "导流罩总成",
+     "parentName": "叶轮总成",
+     "meshes": [
+      "hub",
+      "spinner"
+     ]
+    },
+    {
+     "id": "H03",
+     "label": "机舱罩",
+     "partId": "C2",
+     "partName": "机舱罩总成",
+     "parentName": "机舱总成",
+     "meshes": [
+      "nacelle_cover"
+     ]
+    },
+    {
+     "id": "H04",
+     "label": "塔筒",
+     "partId": "D1",
+     "partName": "塔筒",
+     "parentName": "塔架系统",
+     "meshes": [
+      "tower_seg_1",
+      "tower_seg_2",
+      "tower_seg_3",
+      "tower_seg_4"
+     ]
+    },
+    {
+     "id": "H05",
+     "label": "基础",
+     "partId": "F1",
+     "partName": "单管桩基础",
+     "parentName": "基础",
+     "meshes": [
+      "foundation_monopile"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "nacelle",
+   "name": "机头特写",
+   "distance": 38,
+   "target": [
+    0,
+    95.5,
+    0
+   ],
+   "hotspots": [
+    {
+     "id": "H06",
+     "label": "变桨轴承与驱动件",
+     "partId": "A2",
+     "partName": "液压变桨驱动总成",
+     "parentName": "叶轮总成",
+     "meshes": [
+      "pitch_bearing_1",
+      "pitch_bearing_2",
+      "pitch_bearing_3"
+     ]
+    },
+    {
+     "id": "H07",
+     "label": "变桨液压站/蓄能器",
+     "partId": "C13",
+     "partName": "液压系统总成",
+     "parentName": "机舱总成",
+     "meshes": [
+      "pitch_hydraulic_unit",
+      "accumulator"
+     ]
+    },
+    {
+     "id": "H08",
+     "label": "发电机外转子",
+     "partId": "B1",
+     "partName": "发电机总成",
+     "parentName": "发电机",
+     "meshes": [
+      "generator_rotor",
+      "generator_stator",
+      "generator_fins",
+      "gen_cooling_pipe",
+      "radiator"
+     ]
+    },
+    {
+     "id": "H09",
+     "label": "定轴/动轴/主轴承",
+     "partId": "B2",
+     "partName": "轴系总成",
+     "parentName": "发电机",
+     "meshes": [
+      "main_shaft_fixed",
+      "main_shaft_rotating",
+      "main_bearing"
+     ]
+    },
+    {
+     "id": "H10",
+     "label": "叶轮刹车与锁定销",
+     "partId": "B3",
+     "partName": "叶轮刹车及锁定总成",
+     "parentName": "发电机",
+     "meshes": [
+      "rotor_brake",
+      "lock_pin"
+     ]
+    },
+    {
+     "id": "H11",
+     "label": "电液滑环",
+     "partId": "B4",
+     "partName": "滑环系统总成",
+     "parentName": "发电机",
+     "meshes": [
+      "slip_ring"
+     ]
+    },
+    {
+     "id": "H12",
+     "label": "偏航轴承与驱动",
+     "partId": "C1",
+     "partName": "偏航总成",
+     "parentName": "机舱总成",
+     "meshes": [
+      "yaw_bearing",
+      "yaw_drive"
+     ]
+    },
+    {
+     "id": "H13",
+     "label": "底座",
+     "partId": "C3",
+     "partName": "主平台总成",
+     "parentName": "机舱总成",
+     "meshes": [
+      "base_frame"
+     ]
+    },
+    {
+     "id": "H14",
+     "label": "测风支架",
+     "partId": "C6",
+     "partName": "测风支架总成",
+     "parentName": "机舱总成",
+     "meshes": [
+      "anemometer_mast_1",
+      "anemometer_mast_2"
+     ]
+    },
+    {
+     "id": "H15",
+     "label": "通风散热管道",
+     "partId": "C7",
+     "partName": "发电机通风散热管道总成",
+     "parentName": "机舱总成",
+     "meshes": [
+      "cooling_duct"
+     ]
+    },
+    {
+     "id": "H16",
+     "label": "内平台与爬梯",
+     "partId": "C4",
+     "partName": "内平台总成",
+     "parentName": "机舱总成",
+     "meshes": [
+      "inner_platform",
+      "ladder"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "towerbase",
+   "name": "塔底特写",
+   "distance": 18,
+   "target": [
+    0,
+    6,
+    0
+   ],
+   "hotspots": [
+    {
+     "id": "H17",
+     "label": "全功率变流器",
+     "partId": "E1",
+     "partName": "全功率变流器",
+     "parentName": "电气系统",
+     "meshes": [
+      "converter_cabinet"
+     ]
+    },
+    {
+     "id": "H18",
+     "label": "升压变压器",
+     "partId": "E2",
+     "partName": "升压变压器",
+     "parentName": "电气系统",
+     "meshes": [
+      "transformer"
+     ]
+    },
+    {
+     "id": "H19",
+     "label": "高压环网柜",
+     "partId": "E3",
+     "partName": "高压环网柜",
+     "parentName": "电气系统",
+     "meshes": [
+      "hv_switchgear"
+     ]
+    },
+    {
+     "id": "H20",
+     "label": "主控柜",
+     "partId": "E4",
+     "partName": "主控系统",
+     "parentName": "电气系统",
+     "meshes": [
+      "main_control_cabinet"
+     ]
+    },
+    {
+     "id": "H21",
+     "label": "塔内电梯",
+     "partId": "D4",
+     "partName": "塔内电梯",
+     "parentName": "塔架系统",
+     "meshes": [
+      "elevator",
+      "elevator_rail"
+     ]
+    },
+    {
+     "id": "H22",
+     "label": "塔架门",
+     "partId": "D6",
+     "partName": "塔架门",
+     "parentName": "塔架系统",
+     "meshes": [
+      "tower_door"
+     ]
+    },
+    {
+     "id": "H23",
+     "label": "塔外平台设备",
+     "partId": "D8",
+     "partName": "塔外平台",
+     "parentName": "塔架系统",
+     "meshes": [
+      "external_platform",
+      "salt_filter",
+      "crane",
+      "survival_cabin",
+      "external_platform_railing"
+     ]
+    }
+   ]
+  }
+ ],
+ "colors": {
+  "blade_1": {
+   "color": "#E8EAED",
+   "roughness": 0.55,
+   "metalness": 0.05
+  },
+  "blade_2": {
+   "color": "#E8EAED",
+   "roughness": 0.55,
+   "metalness": 0.05
+  },
+  "blade_3": {
+   "color": "#E8EAED",
+   "roughness": 0.55,
+   "metalness": 0.05
+  },
+  "hub": {
+   "color": "#9AA0A6",
+   "roughness": 0.75,
+   "metalness": 0.3
+  },
+  "spinner": {
+   "color": "#F1F3F4",
+   "roughness": 0.5,
+   "metalness": 0.05
+  },
+  "pitch_bearing_1": {
+   "color": "#5F6368",
+   "roughness": 0.4,
+   "metalness": 0.7
+  },
+  "pitch_bearing_2": {
+   "color": "#5F6368",
+   "roughness": 0.4,
+   "metalness": 0.7
+  },
+  "pitch_bearing_3": {
+   "color": "#5F6368",
+   "roughness": 0.4,
+   "metalness": 0.7
+  },
+  "generator_rotor": {
+   "color": "#B0BEC5",
+   "roughness": 0.6,
+   "metalness": 0.55
+  },
+  "generator_stator": {
+   "color": "#8D9AA5",
+   "roughness": 0.55,
+   "metalness": 0.6
+  },
+  "main_shaft_rotating": {
+   "color": "#78909C",
+   "roughness": 0.35,
+   "metalness": 0.8
+  },
+  "main_shaft_fixed": {
+   "color": "#607D8B",
+   "roughness": 0.4,
+   "metalness": 0.75
+  },
+  "main_bearing": {
+   "color": "#455A64",
+   "roughness": 0.35,
+   "metalness": 0.85
+  },
+  "slip_ring": {
+   "color": "#FFB300",
+   "roughness": 0.35,
+   "metalness": 0.65
+  },
+  "rotor_brake": {
+   "color": "#C62828",
+   "roughness": 0.45,
+   "metalness": 0.55
+  },
+  "lock_pin": {
+   "color": "#E53935",
+   "roughness": 0.4,
+   "metalness": 0.6
+  },
+  "nacelle_cover": {
+   "color": "#ECEFF1",
+   "roughness": 0.45,
+   "metalness": 0.1
+  },
+  "base_frame": {
+   "color": "#546E7A",
+   "roughness": 0.5,
+   "metalness": 0.6
+  },
+  "yaw_bearing": {
+   "color": "#37474F",
+   "roughness": 0.35,
+   "metalness": 0.85
+  },
+  "yaw_drive": {
+   "color": "#EF6C00",
+   "roughness": 0.45,
+   "metalness": 0.6
+  },
+  "anemometer_mast_1": {
+   "color": "#0288D1",
+   "roughness": 0.4,
+   "metalness": 0.4
+  },
+  "anemometer_mast_2": {
+   "color": "#0288D1",
+   "roughness": 0.4,
+   "metalness": 0.4
+  },
+  "cooling_duct": {
+   "color": "#4DB6AC",
+   "roughness": 0.5,
+   "metalness": 0.3
+  },
+  "inner_platform": {
+   "color": "#8D6E63",
+   "roughness": 0.65,
+   "metalness": 0.3
+  },
+  "ladder": {
+   "color": "#A1887F",
+   "roughness": 0.6,
+   "metalness": 0.3
+  },
+  "pitch_hydraulic_unit": {
+   "color": "#F9A825",
+   "roughness": 0.45,
+   "metalness": 0.4
+  },
+  "accumulator": {
+   "color": "#FBC02D",
+   "roughness": 0.4,
+   "metalness": 0.5
+  },
+  "tower_seg_1": {
+   "color": "#CFD8DC",
+   "roughness": 0.55,
+   "metalness": 0.15
+  },
+  "tower_seg_2": {
+   "color": "#CFD8DC",
+   "roughness": 0.55,
+   "metalness": 0.15
+  },
+  "tower_seg_3": {
+   "color": "#CFD8DC",
+   "roughness": 0.55,
+   "metalness": 0.15
+  },
+  "tower_seg_4": {
+   "color": "#CFD8DC",
+   "roughness": 0.55,
+   "metalness": 0.15
+  },
+  "tower_door": {
+   "color": "#455A64",
+   "roughness": 0.5,
+   "metalness": 0.5
+  },
+  "elevator": {
+   "color": "#7E57C2",
+   "roughness": 0.5,
+   "metalness": 0.35
+  },
+  "elevator_rail": {
+   "color": "#B39DDB",
+   "roughness": 0.55,
+   "metalness": 0.35
+  },
+  "converter_cabinet": {
+   "color": "#1E88E5",
+   "roughness": 0.5,
+   "metalness": 0.35
+  },
+  "transformer": {
+   "color": "#3949AB",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "hv_switchgear": {
+   "color": "#00897B",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "main_control_cabinet": {
+   "color": "#5E35B1",
+   "roughness": 0.5,
+   "metalness": 0.35
+  },
+  "external_platform": {
+   "color": "#90A4AE",
+   "roughness": 0.6,
+   "metalness": 0.35
+  },
+  "radiator": {
+   "color": "#D84315",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "salt_filter": {
+   "color": "#00ACC1",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "crane": {
+   "color": "#FDD835",
+   "roughness": 0.45,
+   "metalness": 0.4
+  },
+  "survival_cabin": {
+   "color": "#FB8C00",
+   "roughness": 0.55,
+   "metalness": 0.3
+  },
+  "foundation_monopile": {
+   "color": "#78909C",
+   "roughness": 0.7,
+   "metalness": 0.55
+  },
+  "foundation_transition": {
+   "color": "#90A4AE",
+   "roughness": 0.65,
+   "metalness": 0.5
+  },
+  "blade_maint_ladder": {
+   "color": "#A1887F",
+   "roughness": 0.6,
+   "metalness": 0.3
+  },
+  "pitch_lube_unit": {
+   "color": "#F9A825",
+   "roughness": 0.45,
+   "metalness": 0.4
+  },
+  "rotor_drive_flange": {
+   "color": "#607D8B",
+   "roughness": 0.4,
+   "metalness": 0.7
+  },
+  "hub_control_box": {
+   "color": "#5E35B1",
+   "roughness": 0.5,
+   "metalness": 0.35
+  },
+  "lightning_system": {
+   "color": "#FFD54F",
+   "roughness": 0.35,
+   "metalness": 0.75
+  },
+  "gen_seal_ring": {
+   "color": "#37474F",
+   "roughness": 0.5,
+   "metalness": 0.55
+  },
+  "shaft_cooling_unit": {
+   "color": "#4DB6AC",
+   "roughness": 0.5,
+   "metalness": 0.35
+  },
+  "rotor_door_frame": {
+   "color": "#78909C",
+   "roughness": 0.45,
+   "metalness": 0.6
+  },
+  "platform_railing": {
+   "color": "#FFB74D",
+   "roughness": 0.45,
+   "metalness": 0.45
+  },
+  "dehumidifier": {
+   "color": "#26A69A",
+   "roughness": 0.5,
+   "metalness": 0.35
+  },
+  "cable_tray": {
+   "color": "#8D6E63",
+   "roughness": 0.6,
+   "metalness": 0.3
+  },
+  "maintenance_hoist": {
+   "color": "#FDD835",
+   "roughness": 0.45,
+   "metalness": 0.45
+  },
+  "nacelle_seal_strip": {
+   "color": "#546E7A",
+   "roughness": 0.7,
+   "metalness": 0.2
+  },
+  "nacelle_lube_unit": {
+   "color": "#FBC02D",
+   "roughness": 0.45,
+   "metalness": 0.4
+  },
+  "drivetrain_mount": {
+   "color": "#546E7A",
+   "roughness": 0.5,
+   "metalness": 0.6
+  },
+  "nacelle_cabinets": {
+   "color": "#5E35B1",
+   "roughness": 0.5,
+   "metalness": 0.35
+  },
+  "tower_flange_1": {
+   "color": "#B0BEC5",
+   "roughness": 0.5,
+   "metalness": 0.45
+  },
+  "tower_flange_2": {
+   "color": "#B0BEC5",
+   "roughness": 0.5,
+   "metalness": 0.45
+  },
+  "tower_flange_3": {
+   "color": "#B0BEC5",
+   "roughness": 0.5,
+   "metalness": 0.45
+  },
+  "tower_ladder": {
+   "color": "#A1887F",
+   "roughness": 0.6,
+   "metalness": 0.3
+  },
+  "tower_inner_platforms": {
+   "color": "#8D6E63",
+   "roughness": 0.65,
+   "metalness": 0.25
+  },
+  "tower_internals": {
+   "color": "#90A4AE",
+   "roughness": 0.6,
+   "metalness": 0.35
+  },
+  "power_cables": {
+   "color": "#455A64",
+   "roughness": 0.55,
+   "metalness": 0.3
+  },
+  "lighting_fixture": {
+   "color": "#FFF176",
+   "roughness": 0.35,
+   "metalness": 0.2
+  },
+  "jacket_foundation": {
+   "color": "#78909C",
+   "roughness": 0.7,
+   "metalness": 0.55
+  },
+  "grout_connection": {
+   "color": "#A1887F",
+   "roughness": 0.75,
+   "metalness": 0.2
+  },
+  "foundation_platform": {
+   "color": "#90A4AE",
+   "roughness": 0.6,
+   "metalness": 0.35
+  },
+  "fire_system": {
+   "color": "#D32F2F",
+   "roughness": 0.45,
+   "metalness": 0.4
+  },
+  "camera_system": {
+   "color": "#37474F",
+   "roughness": 0.45,
+   "metalness": 0.5
+  },
+  "cms_cabinet": {
+   "color": "#00897B",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "grounding_system": {
+   "color": "#FFCA28",
+   "roughness": 0.4,
+   "metalness": 0.7
+  },
+  "env_control_unit": {
+   "color": "#00ACC1",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "nacelle_truss": {
+   "color": "#8D9AA5",
+   "roughness": 0.55,
+   "metalness": 0.45
+  },
+  "upper_platform": {
+   "color": "#CE93D8",
+   "roughness": 0.6,
+   "metalness": 0.25
+  },
+  "main_half_platform": {
+   "color": "#64B5F6",
+   "roughness": 0.6,
+   "metalness": 0.25
+  },
+  "mid_front_platform": {
+   "color": "#EF5350",
+   "roughness": 0.6,
+   "metalness": 0.25
+  },
+  "mid_rear_platform": {
+   "color": "#66BB6A",
+   "roughness": 0.6,
+   "metalness": 0.25
+  },
+  "shaft_platform": {
+   "color": "#81C784",
+   "roughness": 0.6,
+   "metalness": 0.25
+  },
+  "platform_supports": {
+   "color": "#90A4AE",
+   "roughness": 0.65,
+   "metalness": 0.4
+  },
+  "external_platform_railing": {
+   "color": "#FFB74D",
+   "roughness": 0.45,
+   "metalness": 0.45
+  },
+  "tower_platform_railing": {
+   "color": "#FFB74D",
+   "roughness": 0.45,
+   "metalness": 0.45
+  },
+  "generator_fins": {
+   "color": "#B71C1C",
+   "roughness": 0.45,
+   "metalness": 0.6
+  },
+  "gen_cooling_pipe": {
+   "color": "#E64A19",
+   "roughness": 0.5,
+   "metalness": 0.25
+  },
+  "shaft_cooling_pipe": {
+   "color": "#1E88E5",
+   "roughness": 0.5,
+   "metalness": 0.25
+  }
+ },
+ "defaultColor": {
+  "color": "#9E9E9E",
+  "roughness": 0.6,
+  "metalness": 0.3
+ },
+ "partMeshes": {
+  "A1": [
+   "blade_1",
+   "blade_2",
+   "blade_3"
+  ],
+  "A2": [
+   "pitch_bearing_1",
+   "pitch_bearing_2",
+   "pitch_bearing_3",
+   "pitch_valve_block",
+   "accumulator"
+  ],
+  "A3": [
+   "blade_maint_ladder"
+  ],
+  "A4": [
+   "spinner",
+   "hub"
+  ],
+  "A5": [
+   "pitch_lube_unit"
+  ],
+  "A6": [
+   "rotor_drive_flange"
+  ],
+  "A7": [
+   "hub_control_box"
+  ],
+  "B1": [
+   "generator_rotor",
+   "generator_stator",
+   "generator_fins",
+   "gen_cooling_pipe",
+   "radiator"
+  ],
+  "B2": [
+   "main_shaft_fixed",
+   "main_shaft_rotating",
+   "main_bearing"
+  ],
+  "B3": [
+   "rotor_brake",
+   "lock_pin"
+  ],
+  "B4": [
+   "slip_ring"
+  ],
+  "B5": [
+   "lightning_system"
+  ],
+  "B6": [
+   "gen_seal_ring"
+  ],
+  "B7": [
+   "shaft_cooling_unit",
+   "shaft_cooling_pipe"
+  ],
+  "B8": [
+   "rotor_door_frame"
+  ],
+  "C1": [
+   "yaw_bearing",
+   "yaw_drive"
+  ],
+  "C2": [
+   "nacelle_cover"
+  ],
+  "C3": [
+   "base_frame",
+   "nacelle_truss",
+   "main_half_platform",
+   "mid_front_platform",
+   "mid_rear_platform"
+  ],
+  "C4": [
+   "inner_platform",
+   "ladder",
+   "shaft_platform"
+  ],
+  "C5": [
+   "platform_railing",
+   "upper_platform"
+  ],
+  "C6": [
+   "anemometer_mast_1",
+   "anemometer_mast_2"
+  ],
+  "C7": [
+   "cooling_duct"
+  ],
+  "C8": [
+   "dehumidifier"
+  ],
+  "C9": [
+   "cable_tray"
+  ],
+  "C10": [
+   "maintenance_hoist"
+  ],
+  "C11": [
+   "nacelle_seal_strip"
+  ],
+  "C12": [
+   "nacelle_lube_unit"
+  ],
+  "C13": [
+   "pitch_hydraulic_unit"
+  ],
+  "C14": [
+   "drivetrain_mount"
+  ],
+  "C15": [
+   "nacelle_cabinets"
+  ],
+  "D1": [
+   "tower_seg_1",
+   "tower_seg_2",
+   "tower_seg_3",
+   "tower_seg_4"
+  ],
+  "D2": [
+   "tower_flange_1",
+   "tower_flange_2",
+   "tower_flange_3"
+  ],
+  "D3": [
+   "tower_ladder"
+  ],
+  "D4": [
+   "elevator",
+   "elevator_rail"
+  ],
+  "D5": [
+   "tower_inner_platforms",
+   "tower_platform_railing"
+  ],
+  "D6": [
+   "tower_door"
+  ],
+  "D7": [
+   "tower_internals"
+  ],
+  "D8": [
+   "external_platform",
+   "salt_filter",
+   "crane",
+   "survival_cabin",
+   "external_platform_railing",
+   "platform_supports"
+  ],
+  "E1": [
+   "converter_cabinet"
+  ],
+  "E2": [
+   "transformer"
+  ],
+  "E3": [
+   "hv_switchgear"
+  ],
+  "E4": [
+   "main_control_cabinet"
+  ],
+  "E5": [
+   "power_cables"
+  ],
+  "E6": [
+   "lighting_fixture"
+  ],
+  "F1": [
+   "foundation_monopile"
+  ],
+  "F2": [
+   "jacket_foundation"
+  ],
+  "F3": [
+   "grout_connection"
+  ],
+  "F4": [
+   "foundation_platform",
+   "foundation_transition"
+  ],
+  "G1": [
+   "fire_system"
+  ],
+  "G2": [
+   "camera_system"
+  ],
+  "G3": [
+   "cms_cabinet"
+  ],
+  "G4": [
+   "grounding_system"
+  ],
+  "G5": [
+   "env_control_unit"
+  ]
+ },
+ "partIndex": [
+  {
+   "id": "A1",
+   "name": "叶片",
+   "parentId": "A",
+   "parentName": "叶轮总成"
+  },
+  {
+   "id": "A2",
+   "name": "液压变桨驱动总成",
+   "parentId": "A",
+   "parentName": "叶轮总成"
+  },
+  {
+   "id": "A3",
+   "name": "叶轮维护梯总成",
+   "parentId": "A",
+   "parentName": "叶轮总成"
+  },
+  {
+   "id": "A4",
+   "name": "导流罩总成",
+   "parentId": "A",
+   "parentName": "叶轮总成"
+  },
+  {
+   "id": "A5",
+   "name": "变桨润滑单元",
+   "parentId": "A",
+   "parentName": "叶轮总成"
+  },
+  {
+   "id": "A6",
+   "name": "变桨驱动盘",
+   "parentId": "A",
+   "parentName": "叶轮总成"
+  },
+  {
+   "id": "A7",
+   "name": "轮毂测控柜",
+   "parentId": "A",
+   "parentName": "叶轮总成"
+  },
+  {
+   "id": "B1",
+   "name": "发电机总成",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "B2",
+   "name": "轴系总成",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "B3",
+   "name": "叶轮刹车及锁定总成",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "B4",
+   "name": "滑环系统总成",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "B5",
+   "name": "防雷系统总成",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "B6",
+   "name": "整机密封总成(发电机部分)",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "B7",
+   "name": "轴系散热总成",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "B8",
+   "name": "动轴门框装配",
+   "parentId": "B",
+   "parentName": "发电机"
+  },
+  {
+   "id": "C1",
+   "name": "偏航总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C2",
+   "name": "机舱罩总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C3",
+   "name": "主平台总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C4",
+   "name": "内平台总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C5",
+   "name": "机舱平台附件总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C6",
+   "name": "测风支架总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C7",
+   "name": "发电机通风散热管道总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C8",
+   "name": "环境适应性总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C9",
+   "name": "电缆桥架总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C10",
+   "name": "维护系统总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C11",
+   "name": "整机密封总成(机舱部分)",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C12",
+   "name": "机舱润滑单元",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C13",
+   "name": "液压系统总成",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C14",
+   "name": "传动系底座",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "C15",
+   "name": "机舱电控柜",
+   "parentId": "C",
+   "parentName": "机舱总成"
+  },
+  {
+   "id": "D1",
+   "name": "塔筒",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "D2",
+   "name": "塔筒法兰连接",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "D3",
+   "name": "塔内爬梯与防跌落",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "D4",
+   "name": "塔内电梯",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "D5",
+   "name": "塔内平台与照明",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "D6",
+   "name": "塔架门",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "D7",
+   "name": "塔筒内附件",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "D8",
+   "name": "塔外平台",
+   "parentId": "D",
+   "parentName": "塔架系统"
+  },
+  {
+   "id": "E1",
+   "name": "全功率变流器",
+   "parentId": "E",
+   "parentName": "电气系统"
+  },
+  {
+   "id": "E2",
+   "name": "升压变压器",
+   "parentId": "E",
+   "parentName": "电气系统"
+  },
+  {
+   "id": "E3",
+   "name": "高压环网柜",
+   "parentId": "E",
+   "parentName": "电气系统"
+  },
+  {
+   "id": "E4",
+   "name": "主控系统",
+   "parentId": "E",
+   "parentName": "电气系统"
+  },
+  {
+   "id": "E5",
+   "name": "电缆与桥架",
+   "parentId": "E",
+   "parentName": "电气系统"
+  },
+  {
+   "id": "E6",
+   "name": "照明与辅助电源",
+   "parentId": "E",
+   "parentName": "电气系统"
+  },
+  {
+   "id": "F1",
+   "name": "单管桩基础",
+   "parentId": "F",
+   "parentName": "基础"
+  },
+  {
+   "id": "F2",
+   "name": "导管架基础",
+   "parentId": "F",
+   "parentName": "基础"
+  },
+  {
+   "id": "F3",
+   "name": "灌浆连接段",
+   "parentId": "F",
+   "parentName": "基础"
+  },
+  {
+   "id": "F4",
+   "name": "基础平台与附属",
+   "parentId": "F",
+   "parentName": "基础"
+  },
+  {
+   "id": "G1",
+   "name": "消防系统",
+   "parentId": "G",
+   "parentName": "安全与辅助"
+  },
+  {
+   "id": "G2",
+   "name": "视频监控与门禁",
+   "parentId": "G",
+   "parentName": "安全与辅助"
+  },
+  {
+   "id": "G3",
+   "name": "状态监测系统(CMS)",
+   "parentId": "G",
+   "parentName": "安全与辅助"
+  },
+  {
+   "id": "G4",
+   "name": "防雷与接地系统",
+   "parentId": "G",
+   "parentName": "安全与辅助"
+  },
+  {
+   "id": "G5",
+   "name": "环控系统",
+   "parentId": "G",
+   "parentName": "安全与辅助"
+  },
+  {
+   "id": "H1",
+   "name": "H11 项目 3.3MW",
+   "parentId": "H",
+   "parentName": "其他机型与项目"
+  },
+  {
+   "id": "H2",
+   "name": "H8-2 项目 4.5/6.45MW",
+   "parentId": "H",
+   "parentName": "其他机型与项目"
+  },
+  {
+   "id": "H3",
+   "name": "全生命周期维护报告",
+   "parentId": "H",
+   "parentName": "其他机型与项目"
+  },
+  {
+   "id": "I1",
+   "name": "叶轮定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "I2",
+   "name": "发电机定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "I3",
+   "name": "变流器定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "I4",
+   "name": "偏航系统定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "I5",
+   "name": "液压系统定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "I6",
+   "name": "主控系统定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "I7",
+   "name": "传动系统定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "I8",
+   "name": "塔架系统定期维护",
+   "parentId": "I",
+   "parentName": "运维技能教材"
+  },
+  {
+   "id": "J1",
+   "name": "主控系统故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  },
+  {
+   "id": "J2",
+   "name": "叶轮系统故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  },
+  {
+   "id": "J3",
+   "name": "偏航系统故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  },
+  {
+   "id": "J4",
+   "name": "液压系统故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  },
+  {
+   "id": "J5",
+   "name": "发电机系统故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  },
+  {
+   "id": "J6",
+   "name": "传动系统故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  },
+  {
+   "id": "J7",
+   "name": "变流系统故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  },
+  {
+   "id": "J8",
+   "name": "塔架故障处理",
+   "parentId": "J",
+   "parentName": "故障处理教材（中级）"
+  }
+ ]
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金风6MW风机3D模型知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo"></div>
+    <div>
+      <h1>金风6MW风机3D模型知识库</h1>
+      <p>GW171/6450 机组 · 三维模型与部件资料</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <input id="globalSearch" class="search" type="search" placeholder="搜索资料：力矩值、图纸号、部件名、笔记正文、教材全文…">
+    <button id="btnBooks" class="btn btn-books">📖 教材书库</button>
+    <button id="btnTools" class="btn btn-tools">🧮 PT100 换算</button>
+    <button id="btnExport" class="btn">导出备份</button>
+    <div id="serverInfo" class="server-info">连接中…</div>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- 左：部件目录 -->
+  <aside class="pane pane-tree">
+    <div class="pane-head">
+      <span>部件目录</span>
+      <span id="treeCount" class="muted"></span>
+    </div>
+    <input id="treeFilter" class="filter" type="search" placeholder="筛选部件">
+    <div id="tree" class="tree"></div>
+  </aside>
+
+  <!-- 中：三维 -->
+  <section class="pane pane-3d">
+    <div class="viewbar">
+      <button class="chip chip-primary" data-cmd="picker">部件</button>
+      <button class="chip active" data-view="overview">整机</button>
+      <button class="chip" data-view="nacelle">机头</button>
+      <button class="chip" data-view="towerbase">塔底</button>
+      <span class="viewbar-spacer"></span>
+      <button class="chip" data-cmd="reset">复位视角</button>
+    </div>
+    <iframe id="view3d" src="3d/index.html" title="三维总览"></iframe>
+  </section>
+
+  <!-- 右：资料 -->
+  <aside class="pane pane-lib">
+    <div class="pane-head">
+      <span id="libTitle">资料库</span>
+      <div class="head-actions">
+        <button id="btnExportPart" class="link" disabled>导出该部件</button>
+      </div>
+    </div>
+    <div id="libBody" class="lib-body">
+      <div class="empty">
+        <p>从左侧目录选一个部件，或用中间的三维模型点一个部位</p>
+        <p class="muted">出厂参考参数与你自己录入的资料都会显示在这里</p>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<!-- 添加资料 -->
+<div id="addBar" class="addbar hidden">
+  <button class="add-btn rec" data-add="record"><b>记一条维修</b><span>干了什么 · 什么时候</span></button>
+  <button class="add-btn" data-add="file"><b>导入文件</b><span>图纸 / 手册 / 表格</span></button>
+  <button class="add-btn" data-add="note"><b>写笔记</b><span>现场记录</span></button>
+  <button class="add-btn" data-add="link"><b>记链接</b><span>网址</span></button>
+</div>
+
+<!-- 部件选择器 -->
+<div id="pickerMask" class="mask hidden">
+  <div class="picker">
+    <div class="picker-head">
+      <div>
+        <h3>选择部件</h3>
+        <p id="pickerSub" class="muted"></p>
+      </div>
+      <button id="pickerClose" class="btn">关闭</button>
+    </div>
+    <input id="pickerFilter" class="filter" type="search" placeholder="筛选部件名或编号">
+    <div id="pickerList" class="picker-list"></div>
+  </div>
+</div>
+
+<!-- 通用表单弹层 -->
+<div id="dlgMask" class="mask hidden">
+  <div class="dlg">
+    <h3 id="dlgTitle">标题</h3>
+    <div id="dlgBody"></div>
+    <div class="dlg-actions">
+      <button id="dlgCancel" class="btn">取消</button>
+      <button id="dlgOk" class="btn btn-primary">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- PT100 换算器：现场读到电阻值 → 立刻知道温度（风机测温的标准元件） -->
+<div id="pt100Mask" class="mask hidden">
+  <div class="picker pt-panel">
+    <div class="picker-head">
+      <div>
+        <h3>PT100 换算</h3>
+        <p class="muted">读到电阻知道温度 · 知道温度核电阻</p>
+      </div>
+      <button id="pt100Close" class="btn">关闭</button>
+    </div>
+    <div class="pt-inputs">
+      <label class="pt-in">
+        <span>电阻 Ω</span>
+        <input id="pt100R" type="number" step="0.01" inputmode="decimal" placeholder="例如 138.51">
+      </label>
+      <div class="pt-arrow">⇄</div>
+      <label class="pt-in">
+        <span>温度 ℃</span>
+        <input id="pt100T" type="number" step="0.1" inputmode="decimal" placeholder="例如 100">
+      </label>
+    </div>
+    <div id="pt100Body" class="pt-body"></div>
+  </div>
+</div>
+
+<!-- 搜索结果 -->
+<div id="searchMask" class="mask hidden">
+  <div class="picker search-panel">
+    <div class="picker-head">
+      <div>
+        <h3 id="searchTitle">搜索结果</h3>
+        <p id="searchSub" class="muted"></p>
+      </div>
+      <button id="searchClose" class="btn">关闭</button>
+    </div>
+    <div id="searchList" class="picker-list"></div>
+  </div>
+</div>
+
+<!-- 教材书库：独立小知识库，整本教材进库，可通读、可检索、可跳 PDF -->
+<div id="bookMask" class="mask hidden">
+  <div class="bookshell">
+    <div class="book-head">
+      <div class="book-head-left">
+        <h3 id="bookTitle">教材书库</h3>
+        <p id="bookSub" class="muted"></p>
+      </div>
+      <div class="book-head-right">
+        <select id="bookPick" class="book-pick" title="切换教材"></select>
+        <button id="btnBookPdf" class="btn">打开 PDF 原件</button>
+        <button id="bookClose" class="btn">关闭</button>
+      </div>
+    </div>
+    <div class="book-body">
+      <aside class="book-nav">
+        <input id="bookFilter" class="filter" type="search" placeholder="找章节 / 主题">
+        <div id="bookTree" class="book-tree"></div>
+      </aside>
+      <section class="book-main">
+        <div class="book-toolbar">
+          <span id="bookCrumb" class="book-crumb">选择左侧章节开始阅读</span>
+          <span class="viewbar-spacer"></span>
+          <button id="btnBookMode" class="chip">只看概念</button>
+          <button id="btnBookOpenPdf" class="chip">翻到这一页 PDF</button>
+        </div>
+        <div id="bookText" class="book-text"></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<input id="filePicker" type="file" multiple hidden>
+<div id="toast" class="toast"></div>
+
+<script src="static-mode.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

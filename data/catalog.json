@@ -1,0 +1,768 @@
+{
+ "for": "金风 GW171/6450",
+ "levels": [
+  "整机大部件",
+  "系统",
+  "组件/网格件",
+  "小部件/零件"
+ ],
+ "tree": [
+  {
+   "id": "A",
+   "name": "叶轮总成",
+   "children": [
+    {
+     "id": "A1",
+     "name": "叶片",
+     "cards": 76,
+     "meshes": [
+      "blade_1",
+      "blade_2",
+      "blade_3"
+     ],
+     "torque": [
+      {
+       "joint": "叶片 ↔ 变桨轴承",
+       "bolt": "M36×3725-10.9",
+       "qty": 144,
+       "torque_Nm": 1700,
+       "wrench_mm": 55
+      },
+      {
+       "joint": "叶片侧爬梯",
+       "bolt": "M12×25",
+       "qty": 8,
+       "torque_Nm": null,
+       "wrench_mm": null,
+       "note": "每只叶片 8 颗"
+      }
+     ],
+     "materials": []
+    },
+    {
+     "id": "A2",
+     "name": "液压变桨驱动总成",
+     "cards": 466,
+     "meshes": [
+      "pitch_bearing_1",
+      "pitch_bearing_2",
+      "pitch_bearing_3",
+      "pitch_valve_block",
+      "accumulator"
+     ],
+     "torque": [],
+     "materials": [
+      "08.06.2016",
+      "4.2300.0720",
+      "4.3800.0050",
+      "4.3800.0053",
+      "4.3800.0055",
+      "4.3800.0056",
+      "5.1106.0001",
+      "5.1112.0014",
+      "5.1201.0597",
+      "5.2108.0387",
+      "8.0200.1054",
+      "8.0200.1055",
+      "8.0300.0659",
+      "8.0300.0724"
+     ]
+    },
+    {
+     "id": "A3",
+     "name": "叶轮维护梯总成",
+     "cards": 25,
+     "meshes": [
+      "blade_maint_ladder"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "A4",
+     "name": "导流罩总成",
+     "cards": 21,
+     "meshes": [
+      "spinner",
+      "hub"
+     ],
+     "torque": [
+      {
+       "joint": "导流罩片体",
+       "bolt": "M10×60",
+       "qty": 39,
+       "torque_Nm": null,
+       "wrench_mm": null,
+       "note": "涂乐泰243"
+      }
+     ],
+     "materials": []
+    },
+    {
+     "id": "A5",
+     "name": "变桨润滑单元",
+     "cards": 56,
+     "meshes": [
+      "pitch_lube_unit"
+     ],
+     "torque": [],
+     "materials": [
+      "10.02.00716",
+      "10.02.00984",
+      "8.1900.2140"
+     ]
+    },
+    {
+     "id": "A6",
+     "name": "变桨驱动盘",
+     "cards": 13,
+     "meshes": [
+      "rotor_drive_flange"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "A7",
+     "name": "轮毂测控柜",
+     "cards": 57,
+     "meshes": [
+      "hub_control_box"
+     ],
+     "torque": [],
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "name": "发电机",
+   "children": [
+    {
+     "id": "B1",
+     "name": "发电机总成",
+     "cards": 132,
+     "meshes": [
+      "generator_rotor",
+      "generator_stator",
+      "generator_fins",
+      "gen_cooling_pipe",
+      "radiator"
+     ],
+     "torque": [],
+     "materials": [
+      "6.0200.0032",
+      "6.0200.0090"
+     ]
+    },
+    {
+     "id": "B2",
+     "name": "轴系总成",
+     "cards": 130,
+     "meshes": [
+      "main_shaft_fixed",
+      "main_shaft_rotating",
+      "main_bearing"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "B3",
+     "name": "叶轮刹车及锁定总成",
+     "cards": 92,
+     "meshes": [
+      "rotor_brake",
+      "lock_pin"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "B4",
+     "name": "滑环系统总成",
+     "cards": 47,
+     "meshes": [
+      "slip_ring"
+     ],
+     "torque": [
+      {
+       "joint": "滑环",
+       "bolt": "M10×30-8.8",
+       "qty": 8,
+       "torque_Nm": null,
+       "wrench_mm": null,
+       "note": "螺纹涂乐泰243，T口朝10点钟"
+      }
+     ],
+     "materials": [
+      "5.1507.2012",
+      "5.1507.2105",
+      "8.0900.0007"
+     ]
+    },
+    {
+     "id": "B5",
+     "name": "防雷系统总成",
+     "cards": 22,
+     "meshes": [
+      "lightning_system"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "B6",
+     "name": "整机密封总成(发电机部分)",
+     "cards": 19,
+     "meshes": [
+      "gen_seal_ring"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "B7",
+     "name": "轴系散热总成",
+     "cards": 26,
+     "meshes": [
+      "shaft_cooling_unit",
+      "shaft_cooling_pipe"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "B8",
+     "name": "动轴门框装配",
+     "cards": 1,
+     "meshes": [
+      "rotor_door_frame"
+     ],
+     "torque": [],
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "C",
+   "name": "机舱总成",
+   "children": [
+    {
+     "id": "C1",
+     "name": "偏航总成",
+     "cards": 184,
+     "meshes": [
+      "yaw_bearing",
+      "yaw_drive"
+     ],
+     "torque": [],
+     "materials": [
+      "6.0200.1409"
+     ]
+    },
+    {
+     "id": "C2",
+     "name": "机舱罩总成",
+     "cards": 35,
+     "meshes": [
+      "nacelle_cover"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C3",
+     "name": "主平台总成",
+     "cards": 12,
+     "meshes": [
+      "base_frame",
+      "nacelle_truss",
+      "main_half_platform",
+      "mid_front_platform",
+      "mid_rear_platform"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C4",
+     "name": "内平台总成",
+     "cards": 3,
+     "meshes": [
+      "inner_platform",
+      "ladder",
+      "shaft_platform"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C5",
+     "name": "机舱平台附件总成",
+     "cards": 28,
+     "meshes": [
+      "platform_railing",
+      "upper_platform"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C6",
+     "name": "测风支架总成",
+     "cards": 56,
+     "meshes": [
+      "anemometer_mast_1",
+      "anemometer_mast_2"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C7",
+     "name": "发电机通风散热管道总成",
+     "cards": 26,
+     "meshes": [
+      "cooling_duct"
+     ],
+     "torque": [],
+     "materials": [
+      "20.10.00240",
+      "20.10.00267"
+     ]
+    },
+    {
+     "id": "C8",
+     "name": "环境适应性总成",
+     "cards": 104,
+     "meshes": [
+      "dehumidifier"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C9",
+     "name": "电缆桥架总成",
+     "cards": 18,
+     "meshes": [
+      "cable_tray"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C10",
+     "name": "维护系统总成",
+     "cards": 104,
+     "meshes": [
+      "maintenance_hoist"
+     ],
+     "torque": [],
+     "materials": [
+      "6.0200.0084",
+      "6.0200.0649",
+      "7.0161.0063",
+      "8.0100.0005",
+      "8.0100.0044",
+      "8.0100.0214",
+      "8.0100.0383",
+      "8.0200.0123",
+      "8.0200.0190",
+      "8.0500.0002",
+      "8.0600.0001",
+      "8.0700.0033",
+      "8.0800.0004",
+      "8.0800.0025",
+      "8.1000.0503",
+      "8.1100.0016",
+      "8.1100.0159",
+      "8.1100.0185",
+      "8.1100.0191",
+      "8.1100.0955",
+      "8.1600.0004",
+      "8.1600.0005",
+      "8.1600.0035",
+      "8.1600.0339",
+      "8.1900.0016",
+      "8.1900.0041",
+      "8.1900.0255",
+      "8.1900.1828"
+     ]
+    },
+    {
+     "id": "C11",
+     "name": "整机密封总成(机舱部分)",
+     "cards": 24,
+     "meshes": [
+      "nacelle_seal_strip"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C12",
+     "name": "机舱润滑单元",
+     "cards": 107,
+     "meshes": [
+      "nacelle_lube_unit"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C13",
+     "name": "液压系统总成",
+     "cards": 172,
+     "meshes": [
+      "pitch_hydraulic_unit"
+     ],
+     "torque": [],
+     "materials": [
+      "44.3700.1030",
+      "84.3000.0104"
+     ]
+    },
+    {
+     "id": "C14",
+     "name": "传动系底座",
+     "cards": 9,
+     "meshes": [
+      "drivetrain_mount"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "C15",
+     "name": "机舱电控柜",
+     "cards": 174,
+     "meshes": [
+      "nacelle_cabinets"
+     ],
+     "torque": [],
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "D",
+   "name": "塔架系统",
+   "children": [
+    {
+     "id": "D1",
+     "name": "塔筒",
+     "cards": 63,
+     "meshes": [
+      "tower_seg_1",
+      "tower_seg_2",
+      "tower_seg_3",
+      "tower_seg_4"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "D2",
+     "name": "塔筒法兰连接",
+     "cards": 83,
+     "meshes": [
+      "tower_flange_1",
+      "tower_flange_2",
+      "tower_flange_3"
+     ],
+     "torque": [],
+     "materials": [
+      "8.0300.0160",
+      "8.0300.0179",
+      "8.0800.0037"
+     ]
+    },
+    {
+     "id": "D3",
+     "name": "塔内爬梯与防跌落",
+     "cards": 13,
+     "meshes": [
+      "tower_ladder"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "D4",
+     "name": "塔内电梯",
+     "cards": 19,
+     "meshes": [
+      "elevator",
+      "elevator_rail"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "D5",
+     "name": "塔内平台与照明",
+     "cards": 43,
+     "meshes": [
+      "tower_inner_platforms",
+      "tower_platform_railing"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "D6",
+     "name": "塔架门",
+     "cards": 11,
+     "meshes": [
+      "tower_door"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "D7",
+     "name": "塔筒内附件",
+     "cards": 26,
+     "meshes": [
+      "tower_internals"
+     ],
+     "torque": [],
+     "materials": [
+      "8.0800.0009"
+     ]
+    },
+    {
+     "id": "D8",
+     "name": "塔外平台",
+     "cards": 71,
+     "meshes": [
+      "external_platform",
+      "salt_filter",
+      "crane",
+      "survival_cabin",
+      "external_platform_railing",
+      "platform_supports"
+     ],
+     "torque": [],
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "E",
+   "name": "电气系统",
+   "children": [
+    {
+     "id": "E1",
+     "name": "全功率变流器",
+     "cards": 340,
+     "meshes": [
+      "converter_cabinet"
+     ],
+     "torque": [],
+     "materials": [
+      "5.0601.0369",
+      "5.0605.0002"
+     ]
+    },
+    {
+     "id": "E2",
+     "name": "升压变压器",
+     "cards": 154,
+     "meshes": [
+      "transformer"
+     ],
+     "torque": [],
+     "materials": [
+      "5.1406.1143"
+     ]
+    },
+    {
+     "id": "E3",
+     "name": "高压环网柜",
+     "cards": 137,
+     "meshes": [
+      "hv_switchgear"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "E4",
+     "name": "主控系统",
+     "cards": 199,
+     "meshes": [
+      "main_control_cabinet"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "E5",
+     "name": "电缆与桥架",
+     "cards": 44,
+     "meshes": [
+      "power_cables"
+     ],
+     "torque": [],
+     "materials": [
+      "5.1406.1002"
+     ]
+    },
+    {
+     "id": "E6",
+     "name": "照明与辅助电源",
+     "cards": 67,
+     "meshes": [
+      "lighting_fixture"
+     ],
+     "torque": [],
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "name": "基础",
+   "children": [
+    {
+     "id": "F1",
+     "name": "单管桩基础",
+     "cards": 25,
+     "meshes": [
+      "foundation_monopile"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "F2",
+     "name": "导管架基础",
+     "cards": 1,
+     "meshes": [
+      "jacket_foundation"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "F3",
+     "name": "灌浆连接段",
+     "cards": 1,
+     "meshes": [
+      "grout_connection"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "F4",
+     "name": "基础平台与附属",
+     "cards": 1,
+     "meshes": [
+      "foundation_platform",
+      "foundation_transition"
+     ],
+     "torque": [],
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "G",
+   "name": "安全与辅助",
+   "children": [
+    {
+     "id": "G1",
+     "name": "消防系统",
+     "cards": 64,
+     "meshes": [
+      "fire_system"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "G2",
+     "name": "视频监控与门禁",
+     "cards": 14,
+     "meshes": [
+      "camera_system"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "G3",
+     "name": "状态监测系统(CMS)",
+     "cards": 73,
+     "meshes": [
+      "cms_cabinet"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "G4",
+     "name": "防雷与接地系统",
+     "cards": 71,
+     "meshes": [
+      "grounding_system"
+     ],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "G5",
+     "name": "环控系统",
+     "cards": 249,
+     "meshes": [
+      "env_control_unit"
+     ],
+     "torque": [],
+     "materials": [
+      "60.10.26325"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H",
+   "name": "其他机型与项目",
+   "children": [
+    {
+     "id": "H1",
+     "name": "H11 项目 3.3MW",
+     "cards": 3,
+     "meshes": [],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "H2",
+     "name": "H8-2 项目 4.5/6.45MW",
+     "cards": 2,
+     "meshes": [],
+     "torque": [],
+     "materials": []
+    },
+    {
+     "id": "H3",
+     "name": "全生命周期维护报告",
+     "cards": 3,
+     "meshes": [],
+     "torque": [],
+     "materials": []
+    }
+   ]
+  }
+ ],
+ "totals": {
+  "parts": 56,
+  "meshes": 90,
+  "cards": 4016,
+  "materials": 64
+ }
+}

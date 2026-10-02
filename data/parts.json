@@ -1,0 +1,1193 @@
+{
+ "schemaVersion": 1,
+ "generatedFor": "金风 GW171/6450 部件资料库 App",
+ "sources": [
+  "6MWβ整机介绍.pdf (P11 机组模块 / P4 机型参数 / P5 部件重量)",
+  "GW-09FA.0119_金风6.0MW机组产品说明书_归档版_B(2).pdf (表17 部件尺寸重量 / 表3 叶片 / 表14 技术参数 / 3.6 塔架 / 3.2 电气)",
+  "6MW机组整机安装流程.pdf (171/6450 三叶式安装流程及重要参数)",
+  "3f4d9f12f8d0233585b4fb1741a8edbc.jpg (大丰三峡项目 6B 机组安装简图)"
+ ],
+ "turbine": {
+  "manufacturer": "金风科技",
+  "model": "GW171/6450",
+  "platform": "GW V60",
+  "project": "三峡大丰",
+  "ratedPower_kW": 6450,
+  "rotorDiameter_m": 171,
+  "hubHeight_m": [
+   103,
+   106,
+   109,
+   115
+  ],
+  "rotorSpeed_rpm": [
+   7,
+   10.7
+  ],
+  "ratedWindSpeed_mps": 10.8,
+  "extremeWindSpeed_3s_mps": 59.5,
+  "designLife_years": 25,
+  "powerRegulation": "变桨变速调节",
+  "driveType": "永磁直驱、外转子、单轴承、无齿轮箱",
+  "generatorCooling": "闭式循环空空冷却 IC977",
+  "ipClass_generator": "IP54"
+ },
+ "majorComponents": {
+  "blade": {
+   "length_mm": 83600,
+   "BCD_mm": 3600,
+   "BCD_note": "叶根螺栓分布圆 BCD=3.6 m，表17 对全部候选叶片型号一致",
+   "weight_t": 98.7,
+   "weight_note": "按 GW83.6 计；备选叶片重量见 bladeOptions",
+   "material": "玻璃纤维增强树脂/碳纤维",
+   "airfoil": "DU + NACA 翼型族"
+  },
+  "hub": {
+   "dim_mm": [
+    7574,
+    7574,
+    5525
+   ],
+   "dim_note": "Φ7.574×5.525（回转体，含导流罩装配）",
+   "weight_t": 87.3,
+   "note": "叶轮不含叶片"
+  },
+  "generator": {
+   "diameter_mm": 7455,
+   "length_mm": 2110,
+   "weight_t": 152.0,
+   "phases": "4×3",
+   "dim_note": "Φ7.454×2.11"
+  },
+  "nacelle": {
+   "dim_mm": [
+    14727,
+    7450,
+    7424
+   ],
+   "dim_note": "14.727×7.45×7.424（机舱总成，按表17 逐行核对）",
+   "weight_t": 113.6,
+   "transportDim_mm": [
+    14950,
+    7450,
+    7823
+   ]
+  },
+  "tower": {
+   "bottomFlange_mm": 7000,
+   "topFlange_mm": 5020,
+   "heightOptions_m": [
+    84.96,
+    89.67,
+    90.96,
+    94.96
+   ],
+   "weightOptions_t": [
+    330,
+    380,
+    410,
+    450
+   ],
+   "dim_note": "表17：84.96/89.67/90.96/94.96×Φ7×Φ5.02，塔高按项目优化",
+   "modeledHeight_m": 91.46,
+   "modeledNote": "本模型按大丰三峡 6B 项目安装简图的四段塔筒建模，见 towerSegments_dafeng",
+   "type": "钢制锥筒"
+  },
+  "rotorAssembled_t": 170,
+  "bladeOptions": [
+   {
+    "model": "GW90A",
+    "weight_t": 109.5,
+    "length_m": 90.0,
+    "BCD_m": 3.6
+   },
+   {
+    "model": "Sinoma83.6",
+    "weight_t": 92.7,
+    "length_m": 83.6,
+    "BCD_m": 3.6
+   },
+   {
+    "model": "GW83.6",
+    "weight_t": 98.7,
+    "length_m": 83.6,
+    "BCD_m": 3.6
+   },
+   {
+    "model": "SR171-TI",
+    "weight_t": 82.5,
+    "length_m": 83.6,
+    "BCD_m": 3.6
+   },
+   {
+    "model": "LM75.1P",
+    "weight_t": 78.0,
+    "length_m": 75.079,
+    "BCD_m": 3.6
+   }
+  ]
+ },
+ "towerSegments_dafeng": [
+  {
+   "name": "底段",
+   "dim": "∅7.00×13.8",
+   "weight_t": 156.0,
+   "bolts": "204-M48×355-10.9",
+   "torque_Nm": 5100
+  },
+  {
+   "name": "二段",
+   "dim": "∅7.00×24.55",
+   "weight_t": 118.9,
+   "bolts": "200-M48×335-10.9",
+   "torque_Nm": 5100
+  },
+  {
+   "name": "三段",
+   "dim": "∅7.00×26.56",
+   "weight_t": 111.2,
+   "bolts": "200-M42×330-10.9",
+   "torque_Nm": 3600
+  },
+  {
+   "name": "四段",
+   "dim": "∅7.00×26.55",
+   "weight_t": 99.7,
+   "bolts": "200-M36×340-10.9",
+   "torque_Nm": 2400
+  }
+ ],
+ "torqueTable": [
+  {
+   "joint": "叶片 ↔ 变桨轴承",
+   "bolt": "M36×3725-10.9",
+   "qty": 144,
+   "torque_Nm": 1700,
+   "wrench_mm": 55
+  },
+  {
+   "joint": "叶轮 ↔ 发电机",
+   "bolt": "外圈 M42×330 / 内圈 M42×460(双头)",
+   "qty": 168,
+   "torque_Nm": null,
+   "wrench_mm": null,
+   "note": "双头螺栓预留长度 55mm"
+  },
+  {
+   "joint": "发电机 ↔ 机舱",
+   "bolt": "M42×390",
+   "qty": 208,
+   "torque_Nm": null,
+   "wrench_mm": null
+  },
+  {
+   "joint": "发电机 ↔ 机舱(支腿挂点)",
+   "bolt": "M42×410",
+   "qty": 8,
+   "torque_Nm": null,
+   "wrench_mm": null
+  },
+  {
+   "joint": "塔架上段 ↔ 机舱",
+   "bolt": "M42×545-10.9",
+   "qty": 156,
+   "torque_Nm": 3600,
+   "wrench_mm": 65
+  },
+  {
+   "joint": "塔架中上段 ↔ 上段",
+   "bolt": "M36×340-10.9",
+   "qty": 200,
+   "torque_Nm": 2400,
+   "wrench_mm": 55
+  },
+  {
+   "joint": "塔架中下段 ↔ 中上段",
+   "bolt": "M42×330-10.9",
+   "qty": 200,
+   "torque_Nm": 3600,
+   "wrench_mm": 65
+  },
+  {
+   "joint": "塔架下段 ↔ 中下段",
+   "bolt": "M48×355-10.9",
+   "qty": 200,
+   "torque_Nm": 5100,
+   "wrench_mm": 75
+  },
+  {
+   "joint": "底塔 ↔ 单管桩基础",
+   "bolt": "M48×355-10.9",
+   "qty": 204,
+   "torque_Nm": 5100,
+   "wrench_mm": 75
+  },
+  {
+   "joint": "测风支架底座 ↔ 机舱罩",
+   "bolt": "M12×50-10.9",
+   "qty": 16,
+   "torque_Nm": null,
+   "wrench_mm": null
+  },
+  {
+   "joint": "滑环",
+   "bolt": "M10×30-8.8",
+   "qty": 8,
+   "torque_Nm": null,
+   "wrench_mm": null,
+   "note": "螺纹涂乐泰243，T口朝10点钟"
+  },
+  {
+   "joint": "导流罩片体",
+   "bolt": "M10×60",
+   "qty": 39,
+   "torque_Nm": null,
+   "wrench_mm": null,
+   "note": "涂乐泰243"
+  },
+  {
+   "joint": "叶片侧爬梯",
+   "bolt": "M12×25",
+   "qty": 8,
+   "torque_Nm": null,
+   "wrench_mm": null,
+   "note": "每只叶片 8 颗"
+  }
+ ],
+ "torqueAcceptance": {
+  "standard": [
+   "GW-00FW.0249 B.2",
+   "QGW 209001-2018 B",
+   "QGW 202002-2017-B"
+  ],
+  "method": "在螺尾端头与螺母相对位置划线，螺母退回 60° 左右，扭矩扳手重新拧紧使两线重合，测得扭矩应在 0.9~1.1 倍施工扭矩范围内",
+  "reworkRule": "不合格则扩大检查 10%，仍不合格则该节点全部螺栓重新拧紧",
+  "procedure": "分 50%、100% 两遍紧固",
+  "lubricant": "二硫化钼固体润滑膏（螺栓与螺母旋合面、螺母与垫圈旋合面）"
+ },
+ "operatingReference": {
+  "lubrication": {
+   "pitch": {
+    "sets": 2,
+    "type": "单线式自动润滑",
+    "interval_months": 12
+   },
+   "mainShaft": {
+    "sets": 3,
+    "type": "单线式自动润滑",
+    "interval_months": 12
+   },
+   "yaw": {
+    "type": "单线式自动润滑",
+    "interval_months": 12
+   }
+  },
+  "temperatureControl": {
+   "generator": {
+    "start_C": 60,
+    "max_C": 120,
+    "shutdown_C": 140,
+    "note": "变频一拖二"
+   },
+   "shafting": {
+    "start_C": 55,
+    "limitMode_C": 75,
+    "shutdown_C": 80
+   }
+  },
+  "environment": [
+   {
+    "zone": "轮毂内",
+    "temp_C": 50,
+    "humidity_pct": 70,
+    "corrosion": "C5M",
+    "saltRemoval_pct": 90
+   },
+   {
+    "zone": "机舱内",
+    "temp_C": 55,
+    "humidity_pct": 60,
+    "corrosion": "C4",
+    "saltRemoval_pct": 90
+   },
+   {
+    "zone": "机舱外",
+    "temp_C": 40,
+    "humidity_pct": 100,
+    "corrosion": "C5M",
+    "saltRemoval_pct": null
+   },
+   {
+    "zone": "塔架内",
+    "temp_C": 50,
+    "humidity_pct": 60,
+    "corrosion": "C4",
+    "saltRemoval_pct": 90
+   },
+   {
+    "zone": "底座内",
+    "temp_C": 50,
+    "humidity_pct": 60,
+    "corrosion": "C4",
+    "saltRemoval_pct": 90
+   },
+   {
+    "zone": "轴系",
+    "temp_C": 60,
+    "humidity_pct": null,
+    "corrosion": "C4/C5M",
+    "saltRemoval_pct": null
+   }
+  ],
+  "humidityTarget": "机头、塔底 24 小时平均相对湿度 ≤60%",
+  "yawBrake": {
+   "groups": 2,
+   "perGroup": 7,
+   "note": "单组可 100% 制动 LDD 工况，带磨损状态监测"
+  },
+  "rotorBrake": {
+   "brakePads": 6,
+   "lockPins": 2,
+   "note": "6 副制动器 + 磨损监测 + 双锁定销"
+  },
+  "towerElevator": {
+   "capacity_kg": 350,
+   "persons": 2
+  },
+  "towerCrane": {
+   "ratedLoad_kg": 800,
+   "selfWeight_kg": 1220,
+   "boomRadius_mm": 8000,
+   "power_kW": 20,
+   "maxLift_m": 18
+  },
+  "antiCorrosion": {
+   "bladeInterior": "C5",
+   "generator": "C5",
+   "nacelleInterior": "C4",
+   "exterior": "C5"
+  }
+ },
+ "systems": [
+  {
+   "id": "A",
+   "name": "叶轮总成",
+   "children": [
+    {
+     "id": "A1",
+     "name": "叶片"
+    },
+    {
+     "id": "A2",
+     "name": "液压变桨驱动总成"
+    },
+    {
+     "id": "A3",
+     "name": "叶轮维护梯总成"
+    },
+    {
+     "id": "A4",
+     "name": "导流罩总成"
+    },
+    {
+     "id": "A5",
+     "name": "变桨润滑单元"
+    },
+    {
+     "id": "A6",
+     "name": "变桨驱动盘"
+    },
+    {
+     "id": "A7",
+     "name": "轮毂测控柜"
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "name": "发电机",
+   "children": [
+    {
+     "id": "B1",
+     "name": "发电机总成"
+    },
+    {
+     "id": "B2",
+     "name": "轴系总成"
+    },
+    {
+     "id": "B3",
+     "name": "叶轮刹车及锁定总成"
+    },
+    {
+     "id": "B4",
+     "name": "滑环系统总成"
+    },
+    {
+     "id": "B5",
+     "name": "防雷系统总成"
+    },
+    {
+     "id": "B6",
+     "name": "整机密封总成(发电机部分)"
+    },
+    {
+     "id": "B7",
+     "name": "轴系散热总成"
+    },
+    {
+     "id": "B8",
+     "name": "动轴门框装配"
+    }
+   ]
+  },
+  {
+   "id": "C",
+   "name": "机舱总成",
+   "children": [
+    {
+     "id": "C1",
+     "name": "偏航总成"
+    },
+    {
+     "id": "C2",
+     "name": "机舱罩总成"
+    },
+    {
+     "id": "C3",
+     "name": "主平台总成"
+    },
+    {
+     "id": "C4",
+     "name": "内平台总成"
+    },
+    {
+     "id": "C5",
+     "name": "机舱平台附件总成"
+    },
+    {
+     "id": "C6",
+     "name": "测风支架总成"
+    },
+    {
+     "id": "C7",
+     "name": "发电机通风散热管道总成"
+    },
+    {
+     "id": "C8",
+     "name": "环境适应性总成"
+    },
+    {
+     "id": "C9",
+     "name": "电缆桥架总成"
+    },
+    {
+     "id": "C10",
+     "name": "维护系统总成"
+    },
+    {
+     "id": "C11",
+     "name": "整机密封总成(机舱部分)"
+    },
+    {
+     "id": "C12",
+     "name": "机舱润滑单元"
+    },
+    {
+     "id": "C13",
+     "name": "液压系统总成"
+    },
+    {
+     "id": "C14",
+     "name": "传动系底座"
+    },
+    {
+     "id": "C15",
+     "name": "机舱电控柜"
+    }
+   ]
+  },
+  {
+   "id": "D",
+   "name": "塔架系统",
+   "children": [
+    {
+     "id": "D1",
+     "name": "塔筒"
+    },
+    {
+     "id": "D2",
+     "name": "塔筒法兰连接"
+    },
+    {
+     "id": "D3",
+     "name": "塔内爬梯与防跌落"
+    },
+    {
+     "id": "D4",
+     "name": "塔内电梯"
+    },
+    {
+     "id": "D5",
+     "name": "塔内平台与照明"
+    },
+    {
+     "id": "D6",
+     "name": "塔架门"
+    },
+    {
+     "id": "D7",
+     "name": "塔筒内附件"
+    },
+    {
+     "id": "D8",
+     "name": "塔外平台"
+    }
+   ]
+  },
+  {
+   "id": "E",
+   "name": "电气系统",
+   "children": [
+    {
+     "id": "E1",
+     "name": "全功率变流器"
+    },
+    {
+     "id": "E2",
+     "name": "升压变压器"
+    },
+    {
+     "id": "E3",
+     "name": "高压环网柜"
+    },
+    {
+     "id": "E4",
+     "name": "主控系统"
+    },
+    {
+     "id": "E5",
+     "name": "电缆与桥架"
+    },
+    {
+     "id": "E6",
+     "name": "照明与辅助电源"
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "name": "基础",
+   "children": [
+    {
+     "id": "F1",
+     "name": "单管桩基础"
+    },
+    {
+     "id": "F2",
+     "name": "导管架基础"
+    },
+    {
+     "id": "F3",
+     "name": "灌浆连接段"
+    },
+    {
+     "id": "F4",
+     "name": "基础平台与附属"
+    }
+   ]
+  },
+  {
+   "id": "G",
+   "name": "安全与辅助",
+   "children": [
+    {
+     "id": "G1",
+     "name": "消防系统"
+    },
+    {
+     "id": "G2",
+     "name": "视频监控与门禁"
+    },
+    {
+     "id": "G3",
+     "name": "状态监测系统(CMS)"
+    },
+    {
+     "id": "G4",
+     "name": "防雷与接地系统"
+    },
+    {
+     "id": "G5",
+     "name": "环控系统"
+    }
+   ]
+  },
+  {
+   "id": "H",
+   "name": "其他机型与项目",
+   "children": [
+    {
+     "id": "H1",
+     "name": "H11 项目 3.3MW"
+    },
+    {
+     "id": "H2",
+     "name": "H8-2 项目 4.5/6.45MW"
+    },
+    {
+     "id": "H3",
+     "name": "全生命周期维护报告"
+    }
+   ]
+  },
+  {
+   "id": "I",
+   "name": "运维技能教材",
+   "children": [
+    {
+     "id": "I1",
+     "name": "叶轮定期维护"
+    },
+    {
+     "id": "I2",
+     "name": "发电机定期维护"
+    },
+    {
+     "id": "I3",
+     "name": "变流器定期维护"
+    },
+    {
+     "id": "I4",
+     "name": "偏航系统定期维护"
+    },
+    {
+     "id": "I5",
+     "name": "液压系统定期维护"
+    },
+    {
+     "id": "I6",
+     "name": "主控系统定期维护"
+    },
+    {
+     "id": "I7",
+     "name": "传动系统定期维护"
+    },
+    {
+     "id": "I8",
+     "name": "塔架系统定期维护"
+    }
+   ]
+  },
+  {
+   "id": "J",
+   "name": "故障处理教材（中级）",
+   "children": [
+    {
+     "id": "J1",
+     "name": "主控系统故障处理"
+    },
+    {
+     "id": "J2",
+     "name": "叶轮系统故障处理"
+    },
+    {
+     "id": "J3",
+     "name": "偏航系统故障处理"
+    },
+    {
+     "id": "J4",
+     "name": "液压系统故障处理"
+    },
+    {
+     "id": "J5",
+     "name": "发电机系统故障处理"
+    },
+    {
+     "id": "J6",
+     "name": "传动系统故障处理"
+    },
+    {
+     "id": "J7",
+     "name": "变流系统故障处理"
+    },
+    {
+     "id": "J8",
+     "name": "塔架故障处理"
+    }
+   ]
+  }
+ ],
+ "cameraViews": [
+  {
+   "id": "overview",
+   "name": "整机远景",
+   "cameraDistance_m": 260,
+   "target": [
+    0,
+    66,
+    0
+   ],
+   "hotspots": [
+    {
+     "id": "H01",
+     "label": "叶片",
+     "mapsTo": "A1",
+     "mesh": "blade_1,blade_2,blade_3"
+    },
+    {
+     "id": "H02",
+     "label": "轮毂与导流罩",
+     "mapsTo": "A4",
+     "mesh": "hub,spinner"
+    },
+    {
+     "id": "H03",
+     "label": "机舱罩",
+     "mapsTo": "C2",
+     "mesh": "nacelle_cover"
+    },
+    {
+     "id": "H04",
+     "label": "塔筒",
+     "mapsTo": "D1",
+     "mesh": "tower_seg_1..4"
+    },
+    {
+     "id": "H05",
+     "label": "基础",
+     "mapsTo": "F1",
+     "mesh": "foundation_monopile"
+    }
+   ]
+  },
+  {
+   "id": "nacelle",
+   "name": "机头特写",
+   "cameraDistance_m": 38,
+   "target": [
+    0,
+    95.5,
+    0
+   ],
+   "hotspots": [
+    {
+     "id": "H06",
+     "label": "变桨轴承与驱动件",
+     "mapsTo": "A2",
+     "mesh": "pitch_bearing_1..3"
+    },
+    {
+     "id": "H07",
+     "label": "变桨液压站/蓄能器",
+     "mapsTo": "C13",
+     "mesh": "pitch_hydraulic_unit,accumulator"
+    },
+    {
+     "id": "H08",
+     "label": "发电机外转子",
+     "mapsTo": "B1",
+     "mesh": "generator_rotor,generator_stator,generator_fins,gen_cooling_pipe,radiator",
+     "note": "发电机总成全部网格：外转子/定子/散热筋/冷却管"
+    },
+    {
+     "id": "H09",
+     "label": "定轴/动轴/主轴承",
+     "mapsTo": "B2",
+     "mesh": "main_shaft_fixed,main_shaft_rotating,main_bearing",
+     "note": "主轴承与动轴被发电机外转子和驱动法兰遮挡，机位已淡化这两个"
+    },
+    {
+     "id": "H10",
+     "label": "叶轮刹车与锁定销",
+     "mapsTo": "B3",
+     "mesh": "rotor_brake,lock_pin"
+    },
+    {
+     "id": "H11",
+     "label": "电液滑环",
+     "mapsTo": "B4",
+     "mesh": "slip_ring"
+    },
+    {
+     "id": "H12",
+     "label": "偏航轴承与驱动",
+     "mapsTo": "C1",
+     "mesh": "yaw_bearing,yaw_drive"
+    },
+    {
+     "id": "H13",
+     "label": "底座",
+     "mapsTo": "C3",
+     "mesh": "base_frame"
+    },
+    {
+     "id": "H14",
+     "label": "测风支架",
+     "mapsTo": "C6",
+     "mesh": "anemometer_mast_1,anemometer_mast_2"
+    },
+    {
+     "id": "H15",
+     "label": "通风散热管道",
+     "mapsTo": "C7",
+     "mesh": "cooling_duct"
+    },
+    {
+     "id": "H16",
+     "label": "内平台与爬梯",
+     "mapsTo": "C4",
+     "mesh": "inner_platform,ladder"
+    }
+   ],
+   "note": "左侧近距离看传动链；外罩与轮毂体淡化，轴系和变桨轴承才点得到",
+   "fadeMeshes": [
+    "nacelle_cover",
+    "spinner",
+    "hub",
+    "generator_stator",
+    "generator_rotor",
+    "blade_1",
+    "blade_2",
+    "blade_3"
+   ]
+  },
+  {
+   "id": "towerbase",
+   "name": "塔底特写",
+   "cameraDistance_m": 18,
+   "target": [
+    0,
+    6,
+    0
+   ],
+   "hotspots": [
+    {
+     "id": "H17",
+     "label": "全功率变流器",
+     "mapsTo": "E1",
+     "mesh": "converter_cabinet"
+    },
+    {
+     "id": "H18",
+     "label": "升压变压器",
+     "mapsTo": "E2",
+     "mesh": "transformer"
+    },
+    {
+     "id": "H19",
+     "label": "高压环网柜",
+     "mapsTo": "E3",
+     "mesh": "hv_switchgear"
+    },
+    {
+     "id": "H20",
+     "label": "主控柜",
+     "mapsTo": "E4",
+     "mesh": "main_control_cabinet"
+    },
+    {
+     "id": "H21",
+     "label": "塔内电梯",
+     "mapsTo": "D4",
+     "mesh": "elevator,elevator_rail"
+    },
+    {
+     "id": "H22",
+     "label": "塔架门",
+     "mapsTo": "D6",
+     "mesh": "tower_door"
+    },
+    {
+     "id": "H23",
+     "label": "塔外平台设备",
+     "mapsTo": "D8",
+     "mesh": "external_platform,salt_filter,crane,survival_cabin,external_platform_railing",
+     "note": "塔外平台及其上的设备（散热器已归入发电机总成）"
+    }
+   ],
+   "note": "方位角 75°：正对塔门一侧，变流器/变压器/环网柜/主控柜/电梯/平台设备都不互相遮挡",
+   "azimuthDeg": 75
+  }
+ ],
+ "geometry_m": {
+  "blade": {
+   "length": 83.6,
+   "rootOD": 3.9,
+   "rootBCD": 3.6,
+   "count": 3,
+   "azimuthDeg": [
+    0,
+    120,
+    240
+   ],
+   "note": "根径 3.9 为按 BCD 3.6 推出的外径，表17 未直接给出"
+  },
+  "pitchBearing": {
+   "diameter": 2.5
+  },
+  "hub": {
+   "diameter": 7.574,
+   "length": 5.525,
+   "note": "表17 轮毂总成 Φ7.574×5.525（含导流罩）"
+  },
+  "spinner": {
+   "dim": [
+    8.281,
+    7.47,
+    6.009
+   ]
+  },
+  "generator": {
+   "diameter": 7.454,
+   "length": 2.11
+  },
+  "nacelleCover": {
+   "dim": [
+    14.727,
+    7.45,
+    7.424
+   ],
+   "note": "表17 机舱总成；机舱+发电机+轮毂合计 22.36 m ≈ 资料总长 22.115 m"
+  },
+  "mainShaft": {
+   "length": 3.0
+  },
+  "baseFrame": {
+   "dim": [
+    8.0,
+    5.0,
+    2.5
+   ]
+  },
+  "yawBearing": {
+   "diameter": 5.0
+  },
+  "tower": {
+   "bottomDiameter": 7.0,
+   "topDiameter": 5.02,
+   "height": 91.46,
+   "segments": 4,
+   "segmentLengths": [
+    13.8,
+    24.55,
+    26.56,
+    26.55
+   ],
+   "heightOptions": [
+    84.96,
+    89.67,
+    90.96,
+    94.96
+   ]
+  },
+  "foundation": {
+   "monopileDiameter": 7.5,
+   "aboveSeabed": 15.0
+  },
+  "coordinateSystem": "模型导出为 Y 轴向上、单位米；塔架轴在 x=0，机舱朝 +X，叶轮朝 -X",
+  "totalEnvelope": {
+   "rotorDiameter": 171,
+   "hubHeight": 109.0,
+   "modeledHubHeight": 97.06
+  }
+ },
+ "partMeshes": {
+  "A1": [
+   "blade_1",
+   "blade_2",
+   "blade_3"
+  ],
+  "A2": [
+   "pitch_bearing_1",
+   "pitch_bearing_2",
+   "pitch_bearing_3",
+   "pitch_valve_block",
+   "accumulator"
+  ],
+  "A3": [
+   "blade_maint_ladder"
+  ],
+  "A4": [
+   "spinner",
+   "hub"
+  ],
+  "A5": [
+   "pitch_lube_unit"
+  ],
+  "A6": [
+   "rotor_drive_flange"
+  ],
+  "A7": [
+   "hub_control_box"
+  ],
+  "B1": [
+   "generator_rotor",
+   "generator_stator",
+   "generator_fins",
+   "gen_cooling_pipe",
+   "radiator"
+  ],
+  "B2": [
+   "main_shaft_fixed",
+   "main_shaft_rotating",
+   "main_bearing"
+  ],
+  "B3": [
+   "rotor_brake",
+   "lock_pin"
+  ],
+  "B4": [
+   "slip_ring"
+  ],
+  "B5": [
+   "lightning_system"
+  ],
+  "B6": [
+   "gen_seal_ring"
+  ],
+  "B7": [
+   "shaft_cooling_unit",
+   "shaft_cooling_pipe"
+  ],
+  "B8": [
+   "rotor_door_frame"
+  ],
+  "C1": [
+   "yaw_bearing",
+   "yaw_drive"
+  ],
+  "C2": [
+   "nacelle_cover"
+  ],
+  "C3": [
+   "base_frame",
+   "nacelle_truss",
+   "main_half_platform",
+   "mid_front_platform",
+   "mid_rear_platform"
+  ],
+  "C4": [
+   "inner_platform",
+   "ladder",
+   "shaft_platform"
+  ],
+  "C5": [
+   "platform_railing",
+   "upper_platform"
+  ],
+  "C6": [
+   "anemometer_mast_1",
+   "anemometer_mast_2"
+  ],
+  "C7": [
+   "cooling_duct"
+  ],
+  "C8": [
+   "dehumidifier"
+  ],
+  "C9": [
+   "cable_tray"
+  ],
+  "C10": [
+   "maintenance_hoist"
+  ],
+  "C11": [
+   "nacelle_seal_strip"
+  ],
+  "C12": [
+   "nacelle_lube_unit"
+  ],
+  "C13": [
+   "pitch_hydraulic_unit"
+  ],
+  "C14": [
+   "drivetrain_mount"
+  ],
+  "C15": [
+   "nacelle_cabinets"
+  ],
+  "D1": [
+   "tower_seg_1",
+   "tower_seg_2",
+   "tower_seg_3",
+   "tower_seg_4"
+  ],
+  "D2": [
+   "tower_flange_1",
+   "tower_flange_2",
+   "tower_flange_3"
+  ],
+  "D3": [
+   "tower_ladder"
+  ],
+  "D4": [
+   "elevator",
+   "elevator_rail"
+  ],
+  "D5": [
+   "tower_inner_platforms",
+   "tower_platform_railing"
+  ],
+  "D6": [
+   "tower_door"
+  ],
+  "D7": [
+   "tower_internals"
+  ],
+  "D8": [
+   "external_platform",
+   "salt_filter",
+   "crane",
+   "survival_cabin",
+   "external_platform_railing",
+   "platform_supports"
+  ],
+  "E1": [
+   "converter_cabinet"
+  ],
+  "E2": [
+   "transformer"
+  ],
+  "E3": [
+   "hv_switchgear"
+  ],
+  "E4": [
+   "main_control_cabinet"
+  ],
+  "E5": [
+   "power_cables"
+  ],
+  "E6": [
+   "lighting_fixture"
+  ],
+  "F1": [
+   "foundation_monopile"
+  ],
+  "F2": [
+   "jacket_foundation"
+  ],
+  "F3": [
+   "grout_connection"
+  ],
+  "F4": [
+   "foundation_platform",
+   "foundation_transition"
+  ],
+  "G1": [
+   "fire_system"
+  ],
+  "G2": [
+   "camera_system"
+  ],
+  "G3": [
+   "cms_cabinet"
+  ],
+  "G4": [
+   "grounding_system"
+  ],
+  "G5": [
+   "env_control_unit"
+  ]
+ }
+}

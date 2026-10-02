@@ -1,0 +1,803 @@
+{
+ "schemaVersion": 1,
+ "books": [
+  {
+   "id": "jineng-chuji",
+   "title": "风力发电机组运维职业技能教材（初级）",
+   "subtitle": "新疆金风科技股份有限公司 组织编写",
+   "kind": "textbook",
+   "totalPages": 284,
+   "pdf": "books/jineng-chuji/风力发电机组运维职业技能教材_初级.pdf",
+   "pdfSizeMB": 32.1,
+   "pdfBytes": 33609669,
+   "hasText": true,
+   "hasImages": true,
+   "imageDir": "books/jineng-chuji/pages",
+   "imageCount": 284,
+   "imageMB": 34.8,
+   "note": "扫描件。正文以原页图片为准；OCR 文字仅用于搜索，可能有识别误差。",
+   "chapterMode": "sections",
+   "chapters": [
+    {
+     "id": "I1",
+     "index": 1,
+     "name": "叶轮定期维护",
+     "startPage": 2,
+     "endPage": 61,
+     "pageCount": 60,
+     "sections": [
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 6,
+       "endPage": 9
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 10,
+       "endPage": 32
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 33,
+       "endPage": 33
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 34,
+       "endPage": 42
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 43,
+       "endPage": 43
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 44,
+       "endPage": 46
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 47,
+       "endPage": 57
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 58,
+       "endPage": 60
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 61,
+       "endPage": 61
+      }
+     ]
+    },
+    {
+     "id": "I2",
+     "index": 2,
+     "name": "发电机定期维护",
+     "startPage": 62,
+     "endPage": 94,
+     "pageCount": 33,
+     "sections": [
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 64,
+       "endPage": 71
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 72,
+       "endPage": 73
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 74,
+       "endPage": 77
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 78,
+       "endPage": 81
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 82,
+       "endPage": 82
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 83,
+       "endPage": 83
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 84,
+       "endPage": 85
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 86,
+       "endPage": 91
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 92,
+       "endPage": 92
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 93,
+       "endPage": 94
+      }
+     ]
+    },
+    {
+     "id": "I3",
+     "index": 3,
+     "name": "变流器定期维护",
+     "startPage": 95,
+     "endPage": 129,
+     "pageCount": 35,
+     "sections": [
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 98,
+       "endPage": 101
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 102,
+       "endPage": 104
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 105,
+       "endPage": 109
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 110,
+       "endPage": 112
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 113,
+       "endPage": 115
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 116,
+       "endPage": 117
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 118,
+       "endPage": 119
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 120,
+       "endPage": 122
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 123,
+       "endPage": 124
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 125,
+       "endPage": 127
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 128,
+       "endPage": 129
+      }
+     ]
+    },
+    {
+     "id": "I4",
+     "index": 4,
+     "name": "偏航系统定期维护",
+     "startPage": 130,
+     "endPage": 159,
+     "pageCount": 30,
+     "sections": [
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 130,
+       "endPage": 136
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 137,
+       "endPage": 137
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 138,
+       "endPage": 138
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 139,
+       "endPage": 146
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 147,
+       "endPage": 147
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 148,
+       "endPage": 148
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 149,
+       "endPage": 154
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 155,
+       "endPage": 157
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 158,
+       "endPage": 159
+      }
+     ]
+    },
+    {
+     "id": "I5",
+     "index": 5,
+     "name": "液压系统定期维护",
+     "startPage": 160,
+     "endPage": 190,
+     "pageCount": 31,
+     "sections": [
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 162,
+       "endPage": 167
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 168,
+       "endPage": 168
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 169,
+       "endPage": 169
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 170,
+       "endPage": 176
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 177,
+       "endPage": 177
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 178,
+       "endPage": 179
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 180,
+       "endPage": 185
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 186,
+       "endPage": 188
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 189,
+       "endPage": 190
+      }
+     ]
+    },
+    {
+     "id": "I6",
+     "index": 6,
+     "name": "主控系统定期维护",
+     "startPage": 191,
+     "endPage": 218,
+     "pageCount": 28,
+     "sections": [
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 191,
+       "endPage": 198
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 199,
+       "endPage": 199
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 200,
+       "endPage": 202
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 203,
+       "endPage": 206
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 207,
+       "endPage": 207
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 208,
+       "endPage": 210
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 211,
+       "endPage": 212
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 213,
+       "endPage": 216
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 217,
+       "endPage": 218
+      }
+     ]
+    },
+    {
+     "id": "I7",
+     "index": 7,
+     "name": "传动系统定期维护",
+     "startPage": 219,
+     "endPage": 256,
+     "pageCount": 38,
+     "sections": [
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 221,
+       "endPage": 227
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 228,
+       "endPage": 229
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 230,
+       "endPage": 232
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 233,
+       "endPage": 240
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 241,
+       "endPage": 242
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 243,
+       "endPage": 246
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 247,
+       "endPage": 250
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 251,
+       "endPage": 254
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 255,
+       "endPage": 255
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 256,
+       "endPage": 256
+      }
+     ]
+    },
+    {
+     "id": "I8",
+     "index": 8,
+     "name": "塔架系统定期维护",
+     "startPage": 257,
+     "endPage": 284,
+     "pageCount": 28,
+     "sections": [
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 261,
+       "endPage": 261
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 262,
+       "endPage": 262
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 263,
+       "endPage": 271
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 272,
+       "endPage": 272
+      },
+      {
+       "name": "格物致知",
+       "desc": "概念篇：部件是什么、作用、组成、结构与原理",
+       "startPage": 273,
+       "endPage": 275
+      },
+      {
+       "name": "知行合一",
+       "desc": "操作篇：现场作业步骤与工具",
+       "startPage": 276,
+       "endPage": 281
+      },
+      {
+       "name": "学以致用",
+       "desc": "练习篇：思考题",
+       "startPage": 282,
+       "endPage": 284
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jineng-zhongji",
+   "title": "风力发电机组故障处理（中级）",
+   "subtitle": "新疆金风科技股份有限公司 组织编写",
+   "kind": "faultbook",
+   "totalPages": 225,
+   "pdf": "books/jineng-zhongji/风力发电机组故障处理_中级.pdf",
+   "pdfSizeMB": 27.2,
+   "pdfBytes": 28564667,
+   "hasText": true,
+   "hasImages": true,
+   "imageDir": "books/jineng-zhongji/pages",
+   "imageCount": 225,
+   "imageMB": 27.1,
+   "note": "扫描件。正文以原页图片为准；OCR 文字仅用于搜索，可能有识别误差。",
+   "chapterMode": "tasks",
+   "chapters": [
+    {
+     "id": "J1",
+     "index": 1,
+     "name": "主控系统故障处理",
+     "startPage": 1,
+     "endPage": 38,
+     "pageCount": 38,
+     "sections": [
+      {
+       "name": "任务 1.1",
+       "desc": "安全链动作故障处理",
+       "startPage": 5,
+       "endPage": 12
+      },
+      {
+       "name": "任务 1.2",
+       "desc": "转速比较1故障处理",
+       "startPage": 13,
+       "endPage": 21
+      },
+      {
+       "name": "任务 1.3",
+       "desc": "风速仪工作异常故障处理",
+       "startPage": 22,
+       "endPage": 27
+      },
+      {
+       "name": "任务 1.4",
+       "desc": "机舱子站总线异常故障处理",
+       "startPage": 28,
+       "endPage": 38
+      }
+     ]
+    },
+    {
+     "id": "J2",
+     "index": 2,
+     "name": "叶轮系统故障处理",
+     "startPage": 39,
+     "endPage": 81,
+     "pageCount": 43,
+     "sections": [
+      {
+       "name": "任务 2.1",
+       "desc": "变桨子站总线异常故障处理",
+       "startPage": 39,
+       "endPage": 46
+      },
+      {
+       "name": "任务 2.2",
+       "desc": "变桨逆变器OK信号丢失故障处理",
+       "startPage": 47,
+       "endPage": 56
+      },
+      {
+       "name": "任务 2.3",
+       "desc": "变桨位置比较偏差大故障处理",
+       "startPage": 57,
+       "endPage": 67
+      },
+      {
+       "name": "任务 2.4",
+       "desc": "变桨充电器反馈丢失故障处理",
+       "startPage": 68,
+       "endPage": 81
+      }
+     ]
+    },
+    {
+     "id": "J3",
+     "index": 3,
+     "name": "偏航系统故障处理",
+     "startPage": 82,
+     "endPage": 109,
+     "pageCount": 28,
+     "sections": [
+      {
+       "name": "任务 3.1",
+       "desc": "左偏航反馈丢失故障处理",
+       "startPage": 82,
+       "endPage": 89
+      },
+      {
+       "name": "任务 3.2",
+       "desc": "偏航过程中加速度超限故障处理",
+       "startPage": 90,
+       "endPage": 96
+      },
+      {
+       "name": "任务 3.3",
+       "desc": "偏航加脂油路堵塞信号故障处理",
+       "startPage": 97,
+       "endPage": 102
+      },
+      {
+       "name": "任务 3.4",
+       "desc": "扭缆开关触发故障处理",
+       "startPage": 103,
+       "endPage": 109
+      }
+     ]
+    },
+    {
+     "id": "J4",
+     "index": 4,
+     "name": "液压系统故障处理",
+     "startPage": 110,
+     "endPage": 132,
+     "pageCount": 23,
+     "sections": [
+      {
+       "name": "任务 4.1",
+       "desc": "偏航压力异常故障处理",
+       "startPage": 110,
+       "endPage": 116
+      },
+      {
+       "name": "任务 4.2",
+       "desc": "液压泵无反馈故障处理",
+       "startPage": 117,
+       "endPage": 123
+      },
+      {
+       "name": "任务 4.3",
+       "desc": "建压时间长故障处理",
+       "startPage": 124,
+       "endPage": 132
+      }
+     ]
+    },
+    {
+     "id": "J5",
+     "index": 5,
+     "name": "发电机系统故障处理",
+     "startPage": 133,
+     "endPage": 159,
+     "pageCount": 27,
+     "sections": [
+      {
+       "name": "任务 5.1",
+       "desc": "发电机温度高故障处理",
+       "startPage": 133,
+       "endPage": 139
+      },
+      {
+       "name": "任务 5.2",
+       "desc": "发电机过速1故障处理",
+       "startPage": 140,
+       "endPage": 150
+      },
+      {
+       "name": "任务 5.3",
+       "desc": "发电机散热风道温度传感器异常故障处理",
+       "startPage": 151,
+       "endPage": 159
+      }
+     ]
+    },
+    {
+     "id": "J6",
+     "index": 6,
+     "name": "传动系统故障处理",
+     "startPage": 160,
+     "endPage": 180,
+     "pageCount": 21,
+     "sections": [
+      {
+       "name": "任务 6.1",
+       "desc": "叶轮锁定销未退出故障处理",
+       "startPage": 160,
+       "endPage": 166
+      },
+      {
+       "name": "任务 6.2",
+       "desc": "发电机轴承温升高故障处理",
+       "startPage": 167,
+       "endPage": 173
+      },
+      {
+       "name": "任务 6.3",
+       "desc": "叶轮转速传感器转速异常故障处理",
+       "startPage": 174,
+       "endPage": 180
+      }
+     ]
+    },
+    {
+     "id": "J7",
+     "index": 7,
+     "name": "变流系统故障处理",
+     "startPage": 181,
+     "endPage": 206,
+     "pageCount": 26,
+     "sections": [
+      {
+       "name": "任务 7.1",
+       "desc": "变流子站总线异常故障处理",
+       "startPage": 181,
+       "endPage": 187
+      },
+      {
+       "name": "任务 7.2",
+       "desc": "断路器闭合故障处理",
+       "startPage": 188,
+       "endPage": 193
+      },
+      {
+       "name": "任务 7.3",
+       "desc": "IGBT驱动异常故障处理",
+       "startPage": 194,
+       "endPage": 200
+      },
+      {
+       "name": "任务 7.4",
+       "desc": "变流器出阀压力超低故障处理",
+       "startPage": 201,
+       "endPage": 206
+      }
+     ]
+    },
+    {
+     "id": "J8",
+     "index": 8,
+     "name": "塔架故障处理",
+     "startPage": 207,
+     "endPage": 225,
+     "pageCount": 19,
+     "sections": [
+      {
+       "name": "任务 8.1",
+       "desc": "振动开关动作故障处理",
+       "startPage": 207,
+       "endPage": 225
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
