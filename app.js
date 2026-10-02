@@ -978,7 +978,11 @@ function bind() {
    命中高亮：搜索进来时把命中处框在页图上，并支持「上一处/下一处」逐一看。 */
 const IMGZOOM = { scale: 1, x: 0, y: 0, min: 1, max: 8, dragging: false,
                   lx: 0, ly: 0, pinch: 0,
-                  hits: [], hitIdx: 0, hlEls: [], dims: null };
+                  hits: [], hitIdx: 0, hlEls: [], dims: null,
+                  // 按「处」分组的框元素：groups[i] = 第 i 处命中的全部矩形。
+                  // 一处在同一行内只有 1 个矩形，跨行时有 2 个。
+                  // 「第N处」计数与「当前处」高亮都按它算，不按矩形算。
+                  groups: [] };
 
 /** 每次打开看图器时把 stage 定到「图片实际显示尺寸」。
     这样图片和高亮层都按百分比铺满 stage，两者永远严格对齐。 */
@@ -1035,7 +1039,7 @@ function imgReset() {
 /** 把某个高亮框滚到视口中间（配合放大，让用户一眼看到命中的那几个字）。 */
 function imgFocusHit(idx) {
   const stage = document.getElementById('imgStage');
-  const el = IMGZOOM.hlEls[idx];
+  const el = ((IMGZOOM.groups || [])[idx] || [])[0];
   if (!stage || !el) return;
   const img = document.getElementById('imgBig');
   const bw = stage.offsetWidth, bh = stage.offsetHeight;
@@ -1050,10 +1054,15 @@ function imgFocusHit(idx) {
 }
 
 function imgShowHit(idx, scroll) {
-  const n = IMGZOOM.hits.length;
+  // ⚠️ 这里数的是**处**（groups），不是**矩形**（hlEls）。
+  // 跨行的一处命中会拆成 2 个矩形，若按矩形计数会变成"两处"，
+  // 而且只有其中一个变成「当前处」颜色 —— 看上去就是半个命中被高亮。
+  const groups = IMGZOOM.groups || [];
+  const n = groups.length;
   if (!n) return;
   IMGZOOM.hitIdx = ((idx % n) + n) % n;
-  IMGZOOM.hlEls.forEach((el, i) => el.classList.toggle('cur', i === IMGZOOM.hitIdx));
+  const curEls = groups[IMGZOOM.hitIdx];
+  IMGZOOM.hlEls.forEach((el) => el.classList.toggle('cur', curEls.indexOf(el) >= 0));
   const lab = document.getElementById('imgHitNav');
   if (lab) lab.textContent = `命中第 ${IMGZOOM.hitIdx + 1} / ${n} 处`;
   const nav = document.getElementById('imgHitBar');
@@ -1067,6 +1076,7 @@ function imgRenderHits(hits, dim) {
   IMGZOOM.hits = hits || [];
   IMGZOOM.hitIdx = 0;
   IMGZOOM.hlEls = [];
+  IMGZOOM.groups = [];
   if (hl) hl.innerHTML = '';
   const bar = document.getElementById('imgHitBar');
   if (bar) bar.classList.add('hidden');
@@ -1084,10 +1094,13 @@ function imgRenderHits(hits, dim) {
     el.style.width = ((h.w + pad * 2) / bw * 100) + '%';
     el.style.height = ((h.h + pad * 2) / bh * 100) + '%';
     el.dataset.i = i;
+    el.dataset.g = (h && h.g != null) ? h.g : i;
     hl.appendChild(el);
     IMGZOOM.hlEls.push(el);
+    const g = (h && h.g != null) ? h.g : i;   // 老数据没有组号时按「一框一处」兜底
+    (IMGZOOM.groups[g] || (IMGZOOM.groups[g] = [])).push(el);
   });
-  if (hits.length) imgShowHit(0, true);
+  if (IMGZOOM.groups.length) imgShowHit(0, true);
 }
 
 /** 页图放大时若图片较大，等它解码完再定位/绘画（拿得到 naturalWidth 才准）。 */
@@ -1188,7 +1201,7 @@ function openImageZoom(page, hits) {
       if (id === 'imgClose' || ev.target === mask) { mask.classList.add('hidden'); return; }
       if (id === 'imgIn') { imgZoomAt(innerWidth / 2, innerHeight / 2, 1.25); return; }
       if (id === 'imgOut') { imgZoomAt(innerWidth / 2, innerHeight / 2, 1 / 1.25); return; }
-      if (id === 'imgReset') { imgReset(); if (IMGZOOM.hits.length) imgShowHit(IMGZOOM.hitIdx, true); return; }
+      if (id === 'imgReset') { imgReset(); if ((IMGZOOM.groups || []).length) imgShowHit(IMGZOOM.hitIdx, true); return; }
       if (id === 'imgHitPrev') { imgShowHit(IMGZOOM.hitIdx - 1, true); return; }
       if (id === 'imgHitNext') { imgShowHit(IMGZOOM.hitIdx + 1, true); return; }
       // 点图片：没放大时放大，已放大则不动（避免误触打断看图）
@@ -1571,10 +1584,14 @@ function bookHitBoxes(bookId, pageNo, kwRaw) {
   const kw = _nospace(flatText(String(kwRaw || ''))).toLowerCase();
   if (!kw) return [];
 
-  // 1) 把整页的行文字按字数切回各词，拼成一条流；同时记下每个字符归属的框
+  // 1) 把整页的行文字按字数切回各词，拼成一条流；
+  //    同时记下每个字符归属的框**和它属于哪一行**（跨行命中要按行拆框）
   let stream = '';
   const chars = [];
+  const charLine = [];
+  let li = -1;
   for (const L of p.lineboxes.lines) {
+    li++;
     const parts = L[5];
     if (!parts || !parts.length) continue;
     const flat = _nospace(flatText(L[0])).toLowerCase();
@@ -1586,33 +1603,49 @@ function bookHitBoxes(bookId, pageNo, kwRaw) {
       const last = (k === parts.length - 1);
       const piece = last ? flat.slice(seek) : flat.slice(seek, seek + n);
       if (!last) seek = Math.min(flat.length, seek + n);
-      for (let i = 0; i < piece.length; i++) chars.push(box);
+      for (let i = 0; i < piece.length; i++) { chars.push(box); charLine.push(li); }
       stream += piece;
     }
   }
   if (!stream) return [];
 
-  // 2) 在整页流里找关键词，把命中处覆盖的框合并成一个外接矩形
+  // 2) 在整页流里找关键词，**按行拆成矩形**再输出。
+  //
+  // ⚠️ 这里原先是把命中覆盖到的所有字符框并成**一个外接矩形**。
+  // 关键词被换行切开时（行末「…风力发电」+ 行首「机组中…」），外接矩形必然
+  // 从上一行行尾横跨到下一行行首 → 变成一条 800+px 的大黄条，盖住几十个无关的字。
+  // 实测（2026-10-03）：2169 个框里有 46 个是这种跨行大框，最宽 876px，
+  // 而该页字框才 22px 高 —— 屏幕上看就是整两行被涂黄。
+  // 现在**每行一个矩形**；同一处命中的所有矩形打同一个组号 g，
+  // 好让「第N处」的计数和「当前处」的高亮仍按**处**算而不是按矩形算。
   const out = [];
   let from = 0;
+  let occ = 0;
   while (true) {
     const at = stream.indexOf(kw, from);
     if (at < 0) break;
     const end = Math.min(at + kw.length, chars.length);
-    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    const spans = [];                       // 每行一个 [行号, x0, y0, x1, y1]
     for (let i = at; i < end; i++) {
       const b = chars[i];
       if (!b) continue;
-      if (b.x < x0) x0 = b.x;
-      if (b.y < y0) y0 = b.y;
-      if (b.x + b.w > x1) x1 = b.x + b.w;
-      if (b.y + b.h > y1) y1 = b.y + b.h;
+      const gl = charLine[i];
+      let sp = spans.length ? spans[spans.length - 1] : null;
+      if (!sp || sp[0] !== gl) { sp = [gl, Infinity, Infinity, -Infinity, -Infinity]; spans.push(sp); }
+      if (b.x < sp[1]) sp[1] = b.x;
+      if (b.y < sp[2]) sp[2] = b.y;
+      if (b.x + b.w > sp[3]) sp[3] = b.x + b.w;
+      if (b.y + b.h > sp[4]) sp[4] = b.y + b.h;
     }
-    if (isFinite(x0)) {
-      out.push({ x: x0, y: y0, w: x1 - x0, h: y1 - y0, t: stream.slice(at, end) });
+    const txt = stream.slice(at, end);
+    for (const sp of spans) {
+      if (isFinite(sp[1])) {
+        out.push({ x: sp[1], y: sp[2], w: sp[3] - sp[1], h: sp[4] - sp[2], t: txt, g: occ });
+      }
     }
+    occ++;
     from = at + 1;
-    if (out.length >= 60) return out;   // 一页命中过多时不再逐处显示，避免糊成一片
+    if (occ >= 60) break;   // 一页命中过多时不再逐处显示，避免糊成一片
   }
   return out;
 }
