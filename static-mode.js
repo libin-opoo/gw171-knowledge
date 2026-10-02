@@ -53,6 +53,48 @@
   };
 })();
 
+/* 首次打开的等待提示。
+   **为什么要加**：实测首次打开要 ~18~27 秒（卡在跟 GitHub 建连接上，
+   连 3KB 的小文件也要 20 秒），第二次只要 1.1 秒。
+   不提示的话用户会以为坏掉了直接关掉——那就永远等不到「第二次」。
+   这条提示是实测出来的需求，不是拍脑袋加的。 */
+(function () {
+  var el = document.createElement('div');
+  el.id = 'roLoading';
+  el.style.cssText = [
+    'position:fixed', 'inset:0', 'z-index:100000',
+    'background:#f7faf8', 'color:#1d4d33',
+    'display:flex', 'align-items:center', 'justify-content:center',
+    'flex-direction:column', 'gap:10px', 'text-align:center', 'padding:24px',
+    'font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif'
+  ].join(';');
+  el.innerHTML =
+    '<div style="font-size:18px;font-weight:600">正在加载知识库…</div>'
+    + '<div style="font-size:13px;color:#5c6f66;line-height:1.7;max-width:420px">'
+    + '首次打开可能需要 <b>20 秒左右</b>（服务器在国外）。'
+    + '请稍等，别关掉——<b>之后每次打开都很快</b>。</div>'
+    + '<div id="roElapsed" style="font-size:12px;color:#8b9a93">已等待 0 秒</div>';
+
+  function mount() {
+    if (document.body) document.body.appendChild(el);
+    var t0 = Date.now();
+    var tick = setInterval(function () {
+      var s = Math.round((Date.now() - t0) / 1000);
+      var d = document.getElementById('roElapsed');
+      if (d) d.textContent = '已等待 ' + s + ' 秒';
+      // 应用出内容了就撤掉遮罩
+      if (document.querySelector('.tree-node,.tree-group')) {
+        clearInterval(tick);
+        el.remove();
+      }
+      // 兜底：超过 90 秒就不再挡着，让用户自己看错在哪
+      if (s > 90) { clearInterval(tick); el.remove(); }
+    }, 500);
+  }
+  if (document.body) mount();
+  else document.addEventListener('DOMContentLoaded', mount);
+})();
+
 /* 页面上加一条常驻说明。不加的话用户会以为「功能坏了」，
    其实是静态版本来就没有这些功能。 */
 (function () {
