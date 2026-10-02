@@ -352,7 +352,19 @@ mark { background: #ffe9b0; color: var(--hit); font-weight: 700; padding: 0 1px;
 .book-text .bk-sechd.op { background: #fdf6e8; color: #8a6520; }
 .book-text .bk-sechd.ex { background: #f4f1fb; color: #5b4b8a; }
 .book-text p { margin: 0 0 10px; }
-.book-text .bk-hl { background: #ffe9b0; font-weight: 700; padding: 0 2px; border-radius: 3px; }
+/* ⚠️ 这里原本还有一条 `.book-text .bk-hl { background:#ffe9b0; font-weight:700;
+   padding:0 2px; border-radius:3px; }` —— 已删除，别再加回来。
+
+   它是给「正文里的匹配文字」上底色用的，但正文文字高亮现在用的是 <mark>
+   （见上面 `mark { background:#ffe9b0; ... }`），这条是历史残留。
+
+   危害：`.bk-hl` 现在**只有一个用途**——叠在原页书图上的高亮覆盖层
+   （见下面 `position:absolute; inset:0` 那条）。覆盖层本该全透明，
+   却继承了这里的 `background:#ffe9b0`，于是**把整页书图涂成一片不透明的淡黄，
+   教材页完全看不见**，只在上面留下几个小高亮框。
+
+   为什么一直没被发现：所有 DOM 断言都是「高亮框的尺寸和位置对不对」，
+   而那些断言**全是对的**——坏的只是覆盖层的底色。只有真的用眼睛看才会发现。 */
 
 /* ---- 原页图片：书库的阅读主体（扫描件的原书，一字不差） ---- */
 .book-text .bk-page { margin: 0 0 26px; }
