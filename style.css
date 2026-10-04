@@ -559,3 +559,113 @@ mark { background: #ffe9b0; color: var(--hit); font-weight: 700; padding: 0 1px;
 .picker-row.fuzzy { border-left: 3px solid #d9c98f; background: #fcfbf6; }
 .picker-row.fuzzy .badge { background: #f3e9c9; color: #7a6218; }
 .picker-row.fuzzy:hover { background: #f8f5ea; }
+
+/* ==========================================================================
+   窄屏（手机）适配 —— 2026-10-04 加。全部规则都在下面两个 @media 里，
+   所以 ≥861px 的宽屏**一条都不会命中**，电脑版外观与之前逐像素相同。
+
+   改这个之前发生在手机上的事：`.layout` 写死三列 300px/1fr/400px，
+   而 html,body 是 overflow:hidden —— 390px 的手机上搜索框被切掉一半、
+   三维区被挤成 0 宽、右侧「资料库」整块在屏幕外，而且整页不能滚，
+   等于"看得见的那半边"就是全部。用户已经把网址发给同事了，同事手机上
+   看到的就是这个样子。
+
+   方案：三栏 → 单列上下堆叠 + 整页纵向滚动。
+   为什么不用「标签页切换」：那需要 JS 或 radio 型 HTML，而 app.js / index.html
+   由别人独占（本次只许改 style.css）。纯 CSS 里唯一能保证"三块都到得了"的
+   做法就是堆叠 + 滚动，这也正好是手机用户的习惯动作（上下滑）。
+
+   两个刻意的细节：
+   1) 不写 `overflow-x: hidden`。留着让横向溢出照样能被 scrollWidth 量出来，
+      否则又是"被切掉却测不出来"——这个 bug 一开始就是这么藏住的。
+   2) 面板高度用 vh 给上限、内部自己滚（部件目录 82 项如果整摊开，会把三维区
+      推到很远），资料库不限高，跟着整页滚。
+   ========================================================================== */
+
+@media (max-width: 860px) {
+
+  /* --- 1. 放开整页纵向滚动（宽屏是固定三栏、整页不滚） --- */
+  html, body { height: auto; overflow: visible; }
+
+  /* --- 2. 顶栏：品牌一行 + 搜索独占一行 + 按钮自动换行 ---
+     刻意不写死按钮个数/宽度：顶栏以后还会加按钮（现象速查、作业检查…），
+     按钮换行只会让顶栏变高，不会把搜索框挤没。
+     也刻意不做「按钮排成一行横向滑动」——那会让按钮的 rect.right 超出屏宽，
+     与"没有任何元素被裁掉"直接冲突，等于把缺陷藏起来。 */
+  .topbar { height: auto; flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
+  .brand { flex: 1 1 100%; }
+  .brand h1 { font-size: 15px; }
+  .brand p { font-size: 11px; }
+  .topbar-right { margin-left: 0; flex: 1 1 100%; flex-wrap: wrap; gap: 8px; }
+  .search { flex: 1 1 100%; width: 100%; font-size: 15px; padding: 9px 12px; }
+  .btn { padding: 8px 12px; }
+  .server-info { font-size: 11.5px; padding: 5px 9px; }
+
+  /* --- 3. 三栏 → 单列 --- */
+  .layout { height: auto; grid-template-columns: 1fr; }
+
+  /* 部件目录：限高，目录自己内部滚（手指点在 9px 行高上更稳） */
+  .pane-tree { height: 56vh; min-height: 260px; }
+  .tree-child { padding: 9px 14px 9px 34px; }
+  .tree-group { padding: 10px 14px; }
+
+  /* 三维区：iframe 没有固有高度，必须给死高度，否则会塌成 0 宽 0 高 */
+  .pane-3d { height: 58vh; min-height: 320px; }
+  .viewbar { height: auto; flex-wrap: wrap; gap: 6px; padding: 6px 10px; }
+  .viewbar-spacer { display: none; }
+  .chip { padding: 6px 12px; }
+
+  /* 资料库：不限高，内容多长就多长，靠整页滚动看 */
+  .pane-lib { min-height: 40vh; }
+
+  /* --- 4. 底部「添加资料」条：4 个按钮在 390px 下会顶出屏幕 --- */
+  .addbar { flex-wrap: wrap; justify-content: center; bottom: 12px;
+            width: calc(100vw - 20px); padding: 8px; gap: 8px; }
+  .add-btn { flex: 1 1 40%; min-width: 0; padding: 9px 10px; }
+
+  /* --- 5. 弹层：原来写死 640px / 520px，比手机屏还宽 --- */
+  .picker, .dlg { width: calc(100vw - 24px); max-height: 88vh; }
+  .dlg { padding: 16px; }
+  .picker-head { padding: 14px 14px 6px; }
+  .picker-group { padding: 7px 14px; }
+  .picker-row { padding: 11px 14px; }
+  .picker-sub { padding: 0 10px 6px 24px; }
+  .pick-sub { padding: 2px 10px 8px 12px; }
+
+  /* --- 6. 教材书库：左章节树 288px + 右正文在手机上放不下 → 上下两块 --- */
+  .bookshell { width: calc(100vw - 16px); height: 92vh; }
+  .book-head { flex-wrap: wrap; gap: 8px; padding: 12px 14px 10px; }
+  /* ⚠️ 光让 .book-head 换行不够：.book-head-right 自己是一个 flex 容器，
+     里面「教材下拉 + 打开 PDF + 关闭」加起来约 440px，会整个顶出屏幕
+     （实测 btnBookPdf 右边界 410、bookClose 465 > 390）。要让它内部也能换行。 */
+  .book-head-right { flex: 1 1 100%; flex-wrap: wrap; }
+  .book-pick { flex: 1 1 100%; max-width: 100%; }
+  .book-body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .book-nav { max-height: 34vh; border-right: 0; border-bottom: 1px solid var(--line); }
+  .book-toolbar { height: auto; flex-wrap: wrap; gap: 6px; padding: 6px 10px; }
+  .book-text { padding: 12px 14px 40px; }
+  .book-hits { padding: 8px 12px; }
+
+  /* --- 7. 全屏看图 / PT100 换算 --- */
+  .img-mask { padding: 8px; }
+  .img-shell { width: 100%; height: 94vh; }
+  .img-head { flex-wrap: wrap; gap: 6px; padding: 8px 10px; }
+  .pt-inputs { flex-direction: column; align-items: stretch; }
+  .pt-arrow { text-align: center; padding: 0; }
+  .pt-row { flex-wrap: wrap; }
+  .pt-n { flex: 1 1 100%; text-align: left; }
+
+  /* --- 8. 维修记录时间线：时间列写死 118px，窄屏换成一行 --- */
+  .tl-item { flex-wrap: wrap; }
+  .tl-time { flex: 1 1 100%; }
+  .toast { bottom: 76px; max-width: calc(100vw - 24px); }
+}
+
+/* 更窄的屏（≤480px，含 390px 的主流手机）：再省一点高度 */
+@media (max-width: 480px) {
+  .brand p { display: none; }          /* 副标题省一行，把高度让给内容 */
+  .btn { padding: 7px 10px; font-size: 12.5px; }
+  .pane-head { padding: 0 10px; }
+  .pane-3d { height: 54vh; }
+  .pane-tree { height: 50vh; }
+}

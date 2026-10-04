@@ -20,6 +20,16 @@ let RECORD_TARGET = null;
 let BOOKS = [];          // 教材书库索引：每本书的章节 / 板块 / 页码
 let BOOKPAGES = {};      // 书ID -> [ {i, project, section, text} ]（进书库时才加载）
 let BOOKHITS = {};       // 书ID -> { kw, pages:[{i,...}] } 全局搜索的命中缓存
+/* 现象速查（data/symptoms.json）：把「现场的说法」接到「手册哪一页」。
+   为什么需要它：搜「变桨」能搜到（教材里 597 处），可搜「卡涩」只有 2 处、「打滑」3 处
+   —— 手册用词和现场用词对不上，猜不对关键词就等于这几本书不存在。
+   ⚠️ 这一层**只指路、不下结论**：处理办法一律以手册原文为准，别在这里编。 */
+let SYMPTOMS = null;
+/* 作业前检查清单（data/checklists.json）：条目全部能回查到本库出处，勾完可存成一条记录。 */
+let CHECKLISTS = null;
+let clState = {};        // 清单 id -> Set(已勾选的条目下标)
+let clCur = null;        // 当前在看的清单 id
+let symCur = null;       // 当前展开的现象 id
 let bookCur = null;      // 当前在看的书对象
 let bookChap = null;     // 当前章节 id（如 I1）
 let bookOnlyConcept = false;  // 「只看概念」开关
@@ -97,7 +107,7 @@ async function api(path, opts) {
   return r.json();
 }
 async function loadAll() {
-  const [parts, refs, docs, info, photos, catalog, books] = await Promise.all([
+  const [parts, refs, docs, info, photos, catalog, books, symptoms, checklists] = await Promise.all([
     api('/api/parts'), api('/api/refs'), api('/api/docs?since=0'), api('/api/info'),
     // 照片墙是静态文件，不是用户资料——拿不到就当没有，不影响其它功能
     fetch('photos/manifest.json').then((r) => (r.ok ? r.json() : { byPart: {} }))
@@ -108,6 +118,12 @@ async function loadAll() {
     // 教材书库索引：整本书按章节/板块登记，正文按页另存，用到时才拉
     fetch('books/books-index.json').then((r) => (r.ok ? r.json() : { books: [] }))
       .catch(() => ({ books: [] })),
+    // 现象速查索引：静态文件，拿不到就整块不显示（不能因此让界面报错）
+    fetch('data/symptoms.json').then((r) => (r.ok ? r.json() : { symptoms: [] }))
+      .catch(() => ({ symptoms: [] })),
+    // 作业前检查清单：同上
+    fetch('data/checklists.json').then((r) => (r.ok ? r.json() : { lists: [] }))
+      .catch(() => ({ lists: [] })),
   ]);
   PARTS = parts.parts || [];
   REFS = { byPart: refs.byPart || {}, categories: refs.categories || {}, sourceNote: refs.sourceNote || '' };
@@ -115,7 +131,12 @@ async function loadAll() {
   CATALOG = indexCatalog(catalog);
   DOCS = docs.docs || [];
   BOOKS = books.books || [];
+  SYMPTOMS = (symptoms && symptoms.symptoms) || [];
+  CHECKLISTS = (checklists && checklists.lists) || [];
   $('#btnBooks').style.display = BOOKS.length ? '' : 'none';
+  // 没有索引就别显示入口——留一个点开是空的按钮，比没有更让人困惑
+  $('#btnSymptom').style.display = SYMPTOMS.length ? '' : 'none';
+  $('#btnChecklist').style.display = CHECKLISTS.length ? '' : 'none';
   $('#serverInfo').textContent =
     `资料 ${info.docCount} 条 · 文件 ${info.fileCount} 个 · ${fmtBytes(info.totalBytes)}`;
 }
@@ -819,6 +840,65 @@ function bind() {
   $('#pt100R').addEventListener('input', () => { $('#pt100T').value = ''; renderPt100(); });
   $('#pt100T').addEventListener('input', () => { $('#pt100R').value = ''; renderPt100(); });
 
+  // 现象速查：把「现场的说法」接到「手册哪一页」
+  $('#btnSymptom').addEventListener('click', () => openSymptom(''));
+  $('#symClose').addEventListener('click', () => $('#symMask').classList.add('hidden'));
+  $('#symMask').addEventListener('click', (e) => {
+    if (e.target.id === 'symMask') $('#symMask').classList.add('hidden');
+  });
+  $('#symFilter').addEventListener('input', () => { symCur = null; renderSymptom(); });
+  $('#symFilter').addEventListener('keydown', (e) => { if (e.key === 'Enter') renderSymptom(); });
+  $('#symBody').addEventListener('click', (e) => {
+    // 顺序有讲究：先判「展开某条现象」，再判跳转。两种行的 data 属性不会同时出现。
+    const sy = e.target.closest('[data-sym]');
+    if (sy) { symCur = sy.dataset.sym; renderSymptom(); return; }
+    // 手册页码（和全局搜索走同一条路：跳到那一页并高亮关键词）
+    const bk = e.target.closest('[data-book]');
+    if (bk) {
+      $('#symMask').classList.add('hidden');
+      if (bk.dataset.bookpage) bookJumpTo = Number(bk.dataset.bookpage);
+      openBooks(null, bk.dataset.bkw, bk.dataset.book);
+      return;
+    }
+    // 相关部件
+    const pt = e.target.closest('[data-part]');
+    if (pt) {
+      $('#symMask').classList.add('hidden');
+      selectPart(pt.dataset.part, true);
+    }
+  });
+
+  // 作业前检查清单
+  $('#btnChecklist').addEventListener('click', openChecklist);
+  $('#clClose').addEventListener('click', () => $('#clMask').classList.add('hidden'));
+  $('#clMask').addEventListener('click', (e) => {
+    if (e.target.id === 'clMask') $('#clMask').classList.add('hidden');
+  });
+  $('#clBody').addEventListener('click', (e) => {
+    if (e.target.closest('#clBack')) { clCur = null; renderChecklist(); return; }
+    if (e.target.closest('#clAll')) {
+      const l = clById(clCur);
+      if (l) { (l.items || []).forEach((x, i) => clSet(l.id).add(i)); clSave(l.id); renderChecklist(); }
+      return;
+    }
+    if (e.target.closest('#clNone')) {
+      const l = clById(clCur);
+      if (l) { clSet(l.id).clear(); clSave(l.id); renderChecklist(); }
+      return;
+    }
+    if (e.target.closest('#clSave')) { saveChecklist(); return; }
+    const row = e.target.closest('[data-cl]');
+    if (row) { clCur = row.dataset.cl; renderChecklist(); return; }
+    const it = e.target.closest('[data-ci]');
+    if (it && clCur) {
+      const i = Number(it.dataset.ci);
+      const set = clSet(clCur);
+      if (set.has(i)) set.delete(i); else set.add(i);
+      clSave(clCur);
+      renderChecklist();
+    }
+  });
+
   // 导出
   $('#btnExport').addEventListener('click', () => {
     window.location.href = '/api/export';
@@ -867,6 +947,18 @@ function bind() {
     if (e.target.id === 'histClear') { histClear(); renderHistory(); return; }
     const del = e.target.closest('.hist-del');
     if (del) { histRemove(+del.dataset.del); renderHistory(); return; }
+    // 现象速查的结果：不跳走，而是把「现象速查」面板打开并展开这一条。
+    // 他要看的是「哪里讲了这件事」，直接跳教材会丢掉其它出处。
+    const so = e.target.closest('[data-symopen]');
+    if (so) {
+      histPush($('#globalSearch').value);
+      $('#searchMask').classList.add('hidden');
+      $('#symFilter').value = $('#globalSearch').value.trim();
+      symCur = so.dataset.symopen;
+      $('#symMask').classList.remove('hidden');
+      renderSymptom();
+      return;
+    }
     // 教材（整本行或命中页胶囊）：胶囊不在 .picker-row 里，所以先判它
     const bk = e.target.closest('[data-book]');
     if (bk) {
@@ -1435,6 +1527,18 @@ async function runSearch() {
   const bookHits = BOOKS.map((b) => ({ book: b }));
 
   let html = '';
+  // 现象速查排在最前：主人打进来的多半是「现场的说法」，不是手册的词。
+  // 它回答的是「这是什么毛病」，比「哪张卡片里包含这几个字」更贴近他真正的问题。
+  const symHits = symMatch(kw);
+  if (symHits.length) {
+    html += `<div class="picker-group">可能的毛病（按现场说法匹配，点开看手册出处）</div>`;
+    for (const m of symHits) {
+      html += `<div class="picker-row" data-symopen="${esc(m.it.id)}">
+        <span class="badge">🔧 ${(m.it.hits || []).length} 处</span>
+        <span class="nm">${highlight(m.it.title, kw)}
+          <span class="muted">也有人说：${esc((m.it.say || []).slice(0, 4).join('、'))}</span></span></div>`;
+    }
+  }
   if (bookHits.length) {
     html += `<div class="picker-group">教材 ${bookHits.length} 本</div>`;
     for (const h of bookHits) {
@@ -1910,6 +2014,221 @@ function closeBooks() {
   bookOnlyConcept = false;
   $('#btnBookMode').classList.remove('active');
   if (bookCur) renderBook();
+}
+
+/* ---------------------------------------------------------- 现象速查
+
+   现场的说法 → 手册哪一页。
+   ------------------------------------------------------------------
+   为什么要有这一层：全局搜索要求主人**先猜对关键词**。教材里「变桨」有 597 处，
+   猜对就搜得到；可「卡涩」只有 2 处、「打滑」3 处——猜不对就等于这几本书不存在。
+   这一层做的是「把你嘴里的话翻译成手册里的词」，然后在手册里找到讲这件事的段落。
+
+   ⚠️ 铁律：**只指路、不下结论**。这里显示的每一段都是手册原文（逐字来自 OCR），
+   处理办法一律以手册为准。索引里绝不写我们自己编的维修建议——编错了会害人。
+*/
+function symNorm(s) {
+  // 现场打进来的话和索引里的说法都要先归一：去空白、去标点、转小写。
+  // 教材 OCR 的汉字之间本来就插着空格，所以「去空格」是这里的关键一步。
+  return String(s == null ? '' : s).replace(/[\s，。、,.!！?？；;：:（）()「」【】]/g, '').toLowerCase();
+}
+function symMatch(kw) {
+  const q = symNorm(kw);
+  if (!q || !SYMPTOMS || !SYMPTOMS.length) return [];
+  const out = [];
+  for (const it of SYMPTOMS) {
+    let best = 0;
+    for (const say of (it.say || [])) {
+      const s = symNorm(say);
+      if (!s) continue;
+      if (s === q) best = Math.max(best, 100);
+      else if (s.includes(q) || q.includes(s)) best = Math.max(best, 60 + Math.min(s.length, q.length));
+    }
+    if (!best && symNorm(it.title).includes(q)) best = 50;
+    // 命中段落里的关键词也算一条弱命中——他可能就是照着手册的词打的
+    if (!best) {
+      for (const h of (it.hits || [])) {
+        if (symNorm(h.kw).includes(q)) { best = 30; break; }
+      }
+    }
+    if (best) out.push({ it, score: best });
+  }
+  return out.sort((a, b) => b.score - a.score).slice(0, 8);
+}
+/** 把一条现象的可能出处渲染出来：能点的手册页码 + 相关部件 + 相关卡片。 */
+function symHitsHtml(it) {
+  let html = '';
+  const hits = it.hits || [];
+  if (hits.length) {
+    html += '<div class="picker-group">手册里讲这个的地方（点一下直达原页）</div>';
+    for (const h of hits) {
+      const bk = BOOKS.find((b) => b.id === h.book);
+      const bn = bk ? bk.title : h.book;
+      html += `<div class="picker-row" data-book="${esc(h.book)}" data-bkw="${esc(h.kw)}" data-bookpage="${h.page}">
+        <span class="badge">📖 p${h.page}</span>
+        <span class="nm">${esc(h.snippet || h.kw)}
+          <span class="muted">${esc(bn)} · 关键词「${esc(h.kw)}」</span></span></div>`;
+    }
+  }
+  const parts = it.parts || [];
+  if (parts.length) {
+    html += '<div class="picker-group">相关部件</div><div class="pick-sub">'
+      + parts.map((p) => `<span class="bk-jump" data-part="${esc(p)}">${esc(p)} ${esc(partName(p))}</span>`).join('')
+      + '</div>';
+  }
+  const cards = it.cards || [];
+  if (cards.length) {
+    html += '<div class="picker-group">相关参数卡片</div>';
+    for (const c of cards) {
+      html += `<div class="picker-row" data-part="${esc(c.part)}">
+        <span class="badge">${esc(REFS.categories[c.category] || c.category || '')}</span>
+        <span class="nm">${esc(c.label)} <span class="muted">${esc(c.value)}</span></span></div>`;
+    }
+  }
+  if (!hits.length && !parts.length && !cards.length) {
+    html += '<div class="empty"><p>这条还没有可跳转的出处</p></div>';
+  }
+  // 出处透明：索引是机器从教材里抽的，可能抽歪。让主人一眼看到它凭什么这么指。
+  html += `<div class="ref-src">索引来源：${esc(it.conf === 'confirmed' ? '已人工确认' : '按手册用词自动铺的种子，未人工确认')}
+    · 本层只指路，处理办法以手册原文为准</div>`;
+  return html;
+}
+function symListHtml() {
+  if (!SYMPTOMS.length) return '<div class="empty"><p>还没有现象索引</p></div>';
+  // 默认不列全部（几十条摊开反而找不到），先给一句提示，靠上面的筛选框或全局搜索进来
+  return '<div class="empty"><p>说一个现象，比如「变桨不动」「温度高」「漏油」</p>'
+    + '<p class="muted">也可以用上面的全局搜索框，会自动先给这一层的结果</p></div>';
+}
+function renderSymptom() {
+  const kw = ($('#symFilter') && $('#symFilter').value.trim()) || '';
+  const body = $('#symBody');
+  if (!kw) {
+    if (symCur) {
+      const it = SYMPTOMS.find((x) => x.id === symCur);
+      if (it) { body.innerHTML = symHitsHtml(it); return; }
+    }
+    body.innerHTML = symListHtml();
+    return;
+  }
+  const ms = symMatch(kw);
+  if (!ms.length) {
+    body.innerHTML = `<div class="empty"><p>索引里没有「${esc(kw)}」这个说法</p>
+      <p class="muted">可以直接用上面的全局搜索框按手册的词搜，比如「变桨」「轴承温度」</p></div>`;
+    return;
+  }
+  let html = `<div class="picker-group">找到 ${ms.length} 类可能的毛病（点一条看出处）</div>`;
+  for (const m of ms) {
+    const it = m.it;
+    html += `<div class="picker-row" data-sym="${esc(it.id)}">
+      <span class="badge">${(it.hits || []).length} 处</span>
+      <span class="nm">${highlight(it.title, kw)}
+        <span class="muted">也有人说：${esc((it.say || []).slice(0, 4).join('、'))}</span></span></div>`;
+  }
+  // 只有一条就直接展开，省一次点击；手动展开过的那条也一并铺开
+  const show = symCur ? ms.find((m) => m.it.id === symCur) : (ms.length === 1 ? ms[0] : null);
+  if (show) html += symHitsHtml(show.it);
+  body.innerHTML = html;
+}
+function openSymptom(kw) {
+  $('#symMask').classList.remove('hidden');
+  if (kw != null) { $('#symFilter').value = kw; symCur = null; }
+  renderSymptom();
+  setTimeout(() => { const f = $('#symFilter'); if (f && !f.value) f.focus(); }, 30);
+}
+
+/* ---------------------------------------------------------- 作业前检查清单
+
+   条目全部来自本库（教材/卡片），每条都带出处，可勾选，勾完能存成一条记录留痕。
+   ⚠️ 清单内容不是我编的，是从主人自己的资料里捞的——他要按现场实际增删。
+   勾选状态存在浏览器本地（localStorage），关掉再打开还在，因为他中途会被叫走。
+*/
+function clById(id) { return (CHECKLISTS || []).find((l) => l.id === id); }
+function clSet(id) {
+  if (!clState[id]) {
+    let arr = [];
+    try { arr = JSON.parse(localStorage.getItem('gw_cl_' + id) || '[]') || []; } catch (e) { arr = []; }
+    clState[id] = new Set(arr);
+  }
+  return clState[id];
+}
+function clSave(id) {
+  try { localStorage.setItem('gw_cl_' + id, JSON.stringify(Array.from(clSet(id)))); } catch (e) { /* 隐私模式就算了 */ }
+}
+function renderChecklist() {
+  const box = $('#clBody');
+  if (!CHECKLISTS.length) { box.innerHTML = '<div class="empty"><p>还没有检查清单</p></div>'; return; }
+  if (!clCur || !clById(clCur)) {
+    // 先列清单本身，让主人点一个进去
+    let html = '<div class="picker-group">选一条清单开始检查</div>';
+    for (const l of CHECKLISTS) {
+      const n = clSet(l.id).size;
+      const tot = (l.items || []).length;
+      html += `<div class="picker-row" data-cl="${esc(l.id)}">
+        <span class="badge">${n}/${tot}</span>
+        <span class="nm">${esc(l.name)}
+          <span class="muted">${esc(l.note || '')}</span></span></div>`;
+    }
+    box.innerHTML = html;
+    return;
+  }
+  const l = clById(clCur);
+  const set = clSet(l.id);
+  const items = l.items || [];
+  let html = `<div class="cl-bar">
+    <button class="chip" id="clBack">← 换一条</button>
+    <span class="cl-prog">${esc(l.name)} · 已勾 <b>${set.size}/${items.length}</b></span>
+    <button class="chip" id="clAll">全打勾</button>
+    <button class="chip" id="clNone">全清</button>
+  </div>`;
+  items.forEach((it, i) => {
+    const on = set.has(i);
+    html += `<div class="cl-item ${on ? 'on' : ''}" data-ci="${i}">
+      <span class="cl-box">${on ? '✅' : '⬜'}</span>
+      <span class="cl-t">${esc(it.t)}
+        <span class="cl-src">出处：${esc(it.src || '')}${it.why ? ' · ' + esc(it.why) : ''}</span>
+        ${it.warn ? `<span class="cl-warn">${esc(it.warn)}</span>` : ''}</span></div>`;
+  });
+  const part = currentPart ? `${esc(currentPart)} ${esc(partName(currentPart))}` : '通用（没选部件）';
+  html += `<div class="cl-foot">
+    <div class="muted">存档会记到：${part}</div>
+    <button class="btn btn-primary" id="clSave">存成一条检查记录</button>
+    <div class="muted">条目出处都在本库内，请按现场实际增删（直接改 data/checklists.json）</div>
+  </div>`;
+  box.innerHTML = html;
+}
+function openChecklist() {
+  $('#clMask').classList.remove('hidden');
+  renderChecklist();
+}
+async function saveChecklist() {
+  const l = clById(clCur);
+  if (!l) return;
+  const set = clSet(l.id);
+  const items = l.items || [];
+  const done = items.filter((it, i) => set.has(i));
+  if (!done.length) { toast('一条都还没勾，先勾几条'); return; }
+  const now = Date.now();
+  const miss = items.filter((it, i) => !set.has(i));
+  const body = '【作业前检查】' + l.name + '\n'
+    + done.map((it) => '✅ ' + it.t + '（出处 ' + (it.src || '') + '）').join('\n')
+    + (miss.length ? '\n' + miss.map((it) => '⬜ 未勾：' + it.t).join('\n') : '')
+    + '\n\n清单条目来自本库资料，可自行增删。';
+  try {
+    await pushDoc({
+      uuid: crypto.randomUUID(),
+      partId: currentPart || 'G',
+      title: `作业检查 ${l.name} ${done.length}/${items.length}`,
+      kind: 'RECORD',
+      origName: null, sha256: null, mime: null, sizeBytes: null,
+      textContent: body,
+      note: null,
+      createdAt: now, updatedAt: now,
+      author: '电脑端', rev: 1, deletedAt: null,
+    });
+    await loadAll();
+    renderTree(); renderLibrary(); refresh3DCounts();
+    toast('已存档：' + l.name + ' ' + done.length + '/' + items.length);
+  } catch (e) { toast('存档失败：' + e.message); }
 }
 
 /* ---------------------------------------------------------- 启动 */
